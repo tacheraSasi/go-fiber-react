@@ -11,4 +11,4 @@
 * How to make a basic Go REST API
 * How to make a todo UI
 * React with TypeScript
-* Basic Mantine usage
+* Basic Mantine usage# go-fiber-react
