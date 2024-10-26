@@ -1,10 +1,11 @@
-import React from 'react'
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
-import Login from './pages/Auth/Login'
-import About from './pages/About'
-import Dashboard from './pages/Dashboard'
-import ProtectedRoute from './components/ProtectedRoute'
-import Home from './pages/Home'
+// App.tsx
+import React from 'react';
+import { createBrowserRouter, Link, RouterProvider, Outlet } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import About from './pages/About';
+import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -13,8 +14,12 @@ const App = () => {
       element: (
         <div>
           <h1>Hello World</h1>
-          <Link to="about">About Us</Link>
-          <Link to="dashboard">Dashboard</Link>
+          <nav>
+            <Link to="about">About Us</Link>
+            <Link to="dashboard">Dashboard</Link>
+            <Link to="home">Home</Link>
+          </nav>
+          <Outlet /> 
         </div>
       ),
       children: [
@@ -31,13 +36,12 @@ const App = () => {
       ],
     },
     {
-      path:"/home",
-      element:<Home />
-    }
+      path: '/home',
+      element: <Home />,
+    },
   ]);
-  return (
-    <RouterProvider router={router} />
-  )
-}
 
-export default App
+  return <RouterProvider router={router} />;
+};
+
+export default App;
