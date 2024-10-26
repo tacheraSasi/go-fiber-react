@@ -3,12 +3,13 @@ import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
 import Login from './pages/Auth/Login'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const App = () => {
-  const route = createBrowserRouter([
+  const router = createBrowserRouter([
     {
-      path:"/",
-      element:(
+      path: '/',
+      element: (
         <div>
           <h1>Hello World</h1>
           <Link to="about">About Us</Link>
@@ -27,10 +28,10 @@ const App = () => {
           ),
         },
       ],
-    }
-  ])
+    },
+  ]);
   return (
-    <RouterProvider />
+    <RouterProvider router={router} />
   )
 }
 
