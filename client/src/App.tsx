@@ -2,6 +2,7 @@ import React from 'react'
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
 import Login from './pages/Auth/Login'
 import About from './pages/About'
+import Dashboard from './pages/Dashboard'
 
 const App = () => {
   const route = createBrowserRouter([
