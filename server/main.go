@@ -5,12 +5,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/tacherasasi/go-react/db"
+	"github.com/tacherasasi/go-react/db"	   //Importing the db package
 	"github.com/tacherasasi/go-react/handlers" // Importing the handlers package
 )
+var print = fmt.Println
 
 func main() {
-	fmt.Println("Server starting on port 4000")
+	print("Server starting on port 4000")
 
 	// ServeMux/Router to handle routing
 	mux := http.NewServeMux()
@@ -18,9 +19,9 @@ func main() {
 	//initializing the db
 	db,err := db.Init()
 	if err != nil {
-		log.Fatal("failed to connect to the db")
+		print("failed to connect to the db")
 	}else if db != nil {
-		log.Fatal("Database connected successful")
+		print("Database connected successful")
 	}
 
 
