@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { createBrowserRouter, Link, RouterProvider, Outlet } from 'react-router-dom';
 import Login from './pages/Auth/Login';
