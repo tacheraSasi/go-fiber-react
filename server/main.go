@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/tacherasasi/go-react/handlers"
 )
 
 type Todo struct {
@@ -24,9 +26,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Healthcheck endpoint to verify that the server is up and running
-	mux.HandleFunc("GET /healthcheck", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("OK"))
-	})
+	mux.HandleFunc("GET /healthcheck", handlers.Healthcheck )
 
 	// Endpoint to handle the creation of a new Todo item
 	mux.HandleFunc("/api/todos", func(w http.ResponseWriter, r *http.Request) {
