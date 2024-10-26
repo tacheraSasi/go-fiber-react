@@ -11,8 +11,8 @@
     "@mantine/core": "^3.6.14",
     "@mantine/hooks": "^3.6.14",
     "@primer/octicons-react": "^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "react-router-dom": "^6.27.0",
     "swr": "^1.2.2"
   },
