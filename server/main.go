@@ -15,7 +15,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Setting up the routes and associating them with handlers
-	mux.HandleFunc("/healthcheck", handlers.Healthcheck)        // Healthcheck route
+	mux.HandleFunc(" GET /healthcheck", handlers.Healthcheck)        // Healthcheck route
 	mux.HandleFunc("/api/todos", handlers.HandleTodos)          // Main todos endpoint (POST/GET)
 	mux.HandleFunc("/api/todos/", handlers.HandleTodoUpdate)    // Specific todo update endpoint (PATCH)
 
