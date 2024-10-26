@@ -4,6 +4,7 @@ import Login from './pages/Auth/Login'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './components/ProtectedRoute'
+import Home from './pages/Home'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const App = () => {
         },
       ],
     },
+    {
+      path:"/home",
+      element:<Home />
+    }
   ]);
   return (
     <RouterProvider router={router} />
