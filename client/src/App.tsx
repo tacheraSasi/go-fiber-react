@@ -6,21 +6,16 @@ import About from './pages/About';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
+import Layout from './components/Layout';
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
       element: (
-        <div>
-          <h1>Hello World</h1>
-          <nav>
-            <Link to="about">About Us</Link>
-            <Link to="dashboard">Dashboard</Link>
-            <Link to="home">Home</Link>
-          </nav>
-          <Outlet /> 
-        </div>
+       <Layout>
+          <Outlet />
+       </Layout>
       ),
       children: [
         { path: 'about', element: <About /> },
