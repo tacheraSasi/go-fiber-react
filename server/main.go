@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/tacherasasi/go-react/db"
 	"github.com/tacherasasi/go-react/handlers" // Importing the handlers package
 )
 
@@ -13,6 +14,15 @@ func main() {
 
 	// ServeMux/Router to handle routing
 	mux := http.NewServeMux()
+
+	//initializing the db
+	db,err := db.Init()
+	if err != nil {
+		log.Fatal("failed to connect to the db")
+	}else if db != nil {
+		log.Fatal("Database connected successful")
+	}
+
 
 	// Setting up the routes and associating them with handlers
 	mux.HandleFunc(" GET /healthcheck", handlers.Healthcheck)        // Healthcheck route
