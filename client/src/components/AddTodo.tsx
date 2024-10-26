@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "@mantine/hooks";
 import { Button, Modal, Group, TextInput, Textarea } from "@mantine/core";
-import { ENDPOINT, Todo } from "../App";
+import { ENDPOINT, Todo } from "../pages/Home";
 import { KeyedMutator } from "swr";
 
 function AddTodo({ mutate }: { mutate: KeyedMutator<Todo[]> }) {
