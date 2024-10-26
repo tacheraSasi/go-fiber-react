@@ -1,11 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
-
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"net/http"
+	"strconv"
 )
 
 type Todo struct {
@@ -15,58 +15,92 @@ type Todo struct {
 	Body  string `json:"body"`
 }
 
+var todos []Todo // This slice will store our Todo items
+
 func main() {
-	fmt.Print("Hello world")
+	fmt.Println("Server starting on port 4000")
 
-	app := fiber.New()
+	// ServeMux/Router to handle routing, similar to Fiber's app
+	mux := http.NewServeMux()
 
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:3000",
-		AllowHeaders: "Origin, Content-Type, Accept",
-	}))
-
-	todos := []Todo{}
-
-	app.Get("/healthcheck", func(c *fiber.Ctx) error {
-		return c.SendString("OK")
+	// Healthcheck endpoint to verify that the server is up and running
+	mux.HandleFunc("GET /healthcheck", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("OK"))
 	})
 
-	app.Post("/api/todos", func(c *fiber.Ctx) error {
-		todo := &Todo{}
-
-		if err := c.BodyParser(todo); err != nil {
-			return err
+	// Endpoint to handle the creation of a new Todo item
+	mux.HandleFunc("/api/todos", func(w http.ResponseWriter, r *http.Request) {
+		// Handling CORS (in a basic way) by allowing requests from http://localhost:3000
+		if r.Method == http.MethodOptions {
+			w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+			w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+			w.WriteHeader(http.StatusNoContent)
+			return
 		}
 
-		todo.ID = len(todos) + 1
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Content-Type", "application/json")
 
-		todos = append(todos, *todo)
-
-		return c.JSON(todos)
-
-	})
-
-	app.Patch("/api/todos/:id/done", func(c *fiber.Ctx) error {
-		id, err := c.ParamsInt("id")
-
-		if err != nil {
-			return c.Status(401).SendString("Invalid id")
-		}
-
-		for i, t := range todos {
-			if t.ID == id {
-				todos[i].Done = true
-				break
+		// Check request method type
+		if r.Method == http.MethodPost {
+			var todo Todo
+			// Parse JSON body into Todo struct
+			if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
+				http.Error(w, err.Error(), http.StatusBadRequest)
+				return
 			}
+
+			// Assign an ID to the new Todo and append it to our slice
+			todo.ID = len(todos) + 1
+			todos = append(todos, todo)
+
+			// Respond with the updated list of todos
+			json.NewEncoder(w).Encode(todos)
+			return
 		}
 
-		return c.JSON(todos)
+		// If method is GET, respond with the full list of todos
+		if r.Method == http.MethodGet {
+			json.NewEncoder(w).Encode(todos)
+			return
+		}
+
+		// If method is anything else, respond with "Method Not Allowed"
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 	})
 
-	app.Get("/api/todos", func(c *fiber.Ctx) error {
-		return c.JSON(todos)
+	// Endpoint to update a Todo as done using a PATCH request
+	mux.HandleFunc("/api/todos/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Content-Type", "application/json")
+
+		// Check if method is PATCH
+		if r.Method == http.MethodPatch {
+			// Extract the Todo ID from the URL
+			idStr := r.URL.Path[len("/api/todos/"):]
+			id, err := strconv.Atoi(idStr)
+			if err != nil {
+				http.Error(w, "Invalid ID", http.StatusBadRequest)
+				return
+			}
+
+			// Find the Todo item by ID and mark it as done
+			for i, t := range todos {
+				if t.ID == id {
+					todos[i].Done = true
+					break
+				}
+			}
+
+			// Respond with the updated list of todos
+			json.NewEncoder(w).Encode(todos)
+			return
+		}
+
+		// If method is not PATCH, respond with "Method Not Allowed"
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 	})
 
-	log.Fatal(app.Listen(":4000"))
-
+	// Starting the server on port 4000
+	log.Fatal(http.ListenAndServe(":4000", mux))
 }
