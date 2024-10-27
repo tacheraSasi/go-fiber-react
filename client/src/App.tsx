@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Layout from './components/Layout';
+import Register from './pages/Auth/Register';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -30,6 +31,7 @@ const App = () => {
     },
     { path: 'about', element: <About /> },
     { path: 'login', element: <Login /> },
+    { path: 'register', element: <Register /> },
     {
       path: '/home',
       element: <Home />,

@@ -84,13 +84,13 @@ const Login: React.FC = () => {
             <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-md transition-colors">
               Sign In
             </Button>
-            <Button variant="outline" className="w-full bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700 hover:text-gray-200 font-medium py-2 rounded-md transition-colors">
+            {/* <Button variant="outline" className="w-full bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700 hover:text-gray-200 font-medium py-2 rounded-md transition-colors">
               Sign in with Google
-            </Button>
+            </Button> */}
           </div>
           <div className="text-center text-sm text-gray-400">
             Don&apos;t have an account?{" "}
-            <Link to="#" className="text-red-400 hover:text-red-300 font-medium transition-colors">
+            <Link to="/register" className="text-red-400 hover:text-red-300 font-medium transition-colors">
               Create one now
             </Link>
           </div>
