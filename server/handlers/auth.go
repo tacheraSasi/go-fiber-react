@@ -32,7 +32,7 @@ func encryptPassword(password string) string {
 	// Hash the password with a cost of 10 (you can adjust this value)
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
-		log.Println("Error while hashing password: %v", err)
+		log.Printf("Error while hashing password: %v", err)
 		return ""
 	}
 	return string(hashedPassword)
@@ -85,7 +85,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Insert the new user into the database
-	_, err = DB.Exec("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", user.Name, user.Email, user.Password)
+	_, err = DB.Exec("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", user.Name, user.Email, encryptPassword(user.Password))
 	if err != nil {
 		http.Error(w, "Failed to register user", http.StatusInternalServerError)
 		return
