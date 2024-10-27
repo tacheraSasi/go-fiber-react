@@ -26,45 +26,54 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    try {
-      if (password !== confirmPassword) {
-        toast({
-          variant: "destructive",
-          title: "Uh oh! Something went wrong.",
-          description: "Passwords do not match.",
-          // action: <ToastAction altText="Try again">Try again</ToastAction>,
-        })
-        console.log("Passwords do not match")
-        return
-      }
   
-      const response = await api.post("/auth/register",
-        {
-          name,
-          email,
-          password
-        },
-        {
-          headers:{
-            "Content-Type":"application/json"
-          }
-  
-        }
-      )
-      if (response.data){
-        
-      } 
-      console.log("Register submitted with:", { name, email, password })
-    } catch (error) {
-      console.error(error)
+    // Password validation
+    if (password !== confirmPassword) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Please try Again later",
+        description: "Passwords do not match.",
       })
-      
+      console.log("Passwords do not match")
+      return
+    }
+  
+    try {
+      // API request to Go backend for registration
+      const response = await api.post<{ message: string }>("/auth/register", 
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+  
+      // Handle success response from the Go backend
+      if (response.data) {
+        toast({
+          variant: "success",
+          title: "Registration Successful!",
+          description: response.data.message || "You have successfully registered.",
+        })
+        console.log("Register submitted with:", { name, email, password })
+      }
+    } catch (error) {
+      console.error("Error registering user:", error)
+  
+      // Error handling for server or network errors
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please try again later",
+      })
     }
   }
+  
 
   return (
     <AuthLayout>
