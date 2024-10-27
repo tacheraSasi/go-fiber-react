@@ -56,7 +56,7 @@ const Register: React.FC = () => {
       // Handle success response from the Go backend
       if (response.data) {
         toast({
-          variant: "success",
+          variant: "default",
           title: "Registration Successful!",
           description: response.data.message || "You have successfully registered.",
         })

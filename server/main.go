@@ -10,6 +10,8 @@ import (
 )
 var print = fmt.Println
 
+var FrontendUrl string = "http://localhost:5173"
+
 func main() {
 	print("Server starting on port 4000")
 

@@ -17,6 +17,9 @@ type Todo struct {
 
 var todos []Todo // Slice to store todos
 
+var FrontendUrl string = "http://localhost:5173"
+
+
 // Healthcheck handler for "/healthcheck" route
 func Healthcheck(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("OK"))
@@ -24,7 +27,7 @@ func Healthcheck(w http.ResponseWriter, r *http.Request) {
 
 // HandleTodos handles the "/api/todos" endpoint
 func HandleTodos(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
 	w.Header().Set("Content-Type", "application/json")
 
 	if r.Method == http.MethodOptions {
@@ -60,7 +63,7 @@ func HandleTodos(w http.ResponseWriter, r *http.Request) {
 
 // HandleTodoUpdate handles updating a specific todo by ID on "/api/todos/:id/done"
 func HandleTodoUpdate(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
 	w.Header().Set("Content-Type", "application/json")
 
 	if r.Method == http.MethodPatch {
