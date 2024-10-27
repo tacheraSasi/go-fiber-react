@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -23,6 +23,7 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const { toast } = useToast()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -54,7 +55,9 @@ const Register: React.FC = () => {
       )
   
       // Handle success response from the Go backend
-      if (response.data) {
+      if (response.data.message=="success") {
+        //redirecting to the login page 
+        navigate("/login")
         toast({
           variant: "default",
           title: "Registration Successful!",
