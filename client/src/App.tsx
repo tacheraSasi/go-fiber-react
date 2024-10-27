@@ -17,8 +17,7 @@ const App = () => {
        </Layout>
       ),
       children: [
-        { path: 'about', element: <About /> },
-        { path: 'login', element: <Login /> },
+        
         {
           path: 'dashboard',
           element: (
@@ -29,6 +28,8 @@ const App = () => {
         },
       ],
     },
+    { path: 'about', element: <About /> },
+    { path: 'login', element: <Login /> },
     {
       path: '/home',
       element: <Home />,
