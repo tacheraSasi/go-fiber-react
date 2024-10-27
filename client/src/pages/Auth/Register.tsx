@@ -41,11 +41,11 @@ const Register: React.FC = () => {
 
   return (
     <AuthLayout>
-      <Card className="mx-auto w-full max-w-md relative z-10 bg-gray-900 border-gray-800 shadow-xl">
+      <Card className="mx-auto w-full max-w-md relative z-10 bg-neutral-900 border-neutral-800 shadow-xl">
         <form onSubmit={handleSubmit}>
           <CardHeader className="space-y-1 pb-6">
-            <CardTitle className="text-2xl font-semibold text-gray-100">Create an Account</CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardTitle className="text-2xl font-semibold text-neutral-100">Create an Account</CardTitle>
+            <CardDescription className="text-neutral-400">
               Fill in your details to create a new account
             </CardDescription>
           </CardHeader>
@@ -53,7 +53,7 @@ const Register: React.FC = () => {
             <div className="space-y-4">
               {/* Full Name */}
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium text-gray-300">Full Name</Label>
+                <Label htmlFor="name" className="text-sm font-medium text-neutral-300">Full Name</Label>
                 <Input
                   id="name"
                   type="text"
@@ -61,15 +61,15 @@ const Register: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="bg-gray-800 border-gray-700 text-gray-100 pl-3 placeholder-gray-500 focus:ring-red-500 focus:border-red-500"
+                  className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-3 placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                 />
               </div>
 
               {/* Email */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium text-gray-300">Email</Label>
+                <Label htmlFor="email" className="text-sm font-medium text-neutral-300">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-500" />
                   <Input
                     id="email"
                     type="email"
@@ -77,28 +77,28 @@ const Register: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="bg-gray-800 border-gray-700 text-gray-100 pl-10 placeholder-gray-500 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                   />
                 </div>
               </div>
 
               {/* Password */}
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm font-medium text-gray-300">Password</Label>
+                <Label htmlFor="password" className="text-sm font-medium text-neutral-300">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-500" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="bg-gray-800 border-gray-700 text-gray-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-400 focus:outline-none"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-400 focus:outline-none"
                   >
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
@@ -107,9 +107,9 @@ const Register: React.FC = () => {
 
               {/* Confirm Password */}
               <div className="space-y-2">
-                <Label htmlFor="confirm-password" className="text-sm font-medium text-gray-300">Confirm Password</Label>
+                <Label htmlFor="confirm-password" className="text-sm font-medium text-neutral-300">Confirm Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-500" />
                   <Input
                     id="confirm-password"
                     type="password"
@@ -117,7 +117,7 @@ const Register: React.FC = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
-                    className="bg-gray-800 border-gray-700 text-gray-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
                   />
                 </div>
               </div>
@@ -126,7 +126,7 @@ const Register: React.FC = () => {
             <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-md transition-colors">
               Sign Up
             </Button>
-            <div className="text-center text-sm text-gray-400">
+            <div className="text-center text-sm text-neutral-400">
               Already have an account?{" "}
               <Link to="/login" className="text-red-400 hover:text-red-300 font-medium transition-colors">
                 Sign in here

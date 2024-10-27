@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Layout from './components/Layout';
 import Register from './pages/Auth/Register';
+import Welcome from './pages/Auth/Welcome';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -32,6 +33,7 @@ const App = () => {
     { path: 'about', element: <About /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
+    { path: 'welcome', element: <Welcome /> },
     {
       path: '/home',
       element: <Home />,
