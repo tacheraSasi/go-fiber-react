@@ -38,7 +38,7 @@ const Register: React.FC = () => {
         return
       }
   
-      const response = await api.post("auth/register",
+      const response = await api.post("/auth/register",
         {
           name,
           email,
@@ -50,7 +50,10 @@ const Register: React.FC = () => {
           }
   
         }
-      ) 
+      )
+      if (response.data){
+        
+      } 
       console.log("Register submitted with:", { name, email, password })
     } catch (error) {
       console.error(error)
