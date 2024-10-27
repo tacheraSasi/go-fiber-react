@@ -55,7 +55,7 @@ const Register: React.FC = () => {
       )
   
       // Handle success response from the Go backend
-      if (response.data.message=="success") {
+      if (response.data.message == "success") {
         //redirecting to the login page 
         navigate("/login")
         toast({
