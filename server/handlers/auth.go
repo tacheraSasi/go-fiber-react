@@ -58,9 +58,10 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
 	w.Header().Set("Content-Type", "application/json")
 
-	// Database connected check
-	if DB != nil {
-		log.Println("Database connected successfully in register")
+	// Check database connection
+	if DB == nil {
+		http.Error(w, "Database not connected", http.StatusInternalServerError)
+		return
 	}
 
 	var user User
@@ -68,11 +69,11 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	log.Println(user)
+	log.Println("Received user registration data:", user)
 
 	// Validating if user already exists
 	var existingUser User
-	err := DB.QueryRow("SELECT id, name, email FROM users WHERE email = ?", user.Email).Scan(&existingUser.ID, &existingUser.Name, &existingUser.Email)
+	err := DB.QueryRow("SELECT id, username, email FROM users WHERE email = ?", user.Email).Scan(&existingUser.ID, &existingUser.Name, &existingUser.Email)
 
 	if err == nil {
 		// User already exists
@@ -80,13 +81,16 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	} else if err != sql.ErrNoRows {
 		// Some other error occurred
+		log.Printf("Error checking if user exists: %v", err) // Log the error
 		http.Error(w, "Database error", http.StatusInternalServerError)
 		return
 	}
 
 	// Insert the new user into the database
-	_, err = DB.Exec("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", user.Name, user.Email, encryptPassword(user.Password))
+	hashedPassword := encryptPassword(user.Password) // Hash the password
+	_, err = DB.Exec("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", user.Name, user.Email, hashedPassword)
 	if err != nil {
+		log.Printf("Error inserting user into database: %v", err) // Log the error
 		http.Error(w, "Failed to register user", http.StatusInternalServerError)
 		return
 	}
