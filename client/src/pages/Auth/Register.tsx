@@ -14,6 +14,7 @@ import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
 import AuthLayout from './AuthLayout'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
+import { api } from '@/lib/utils'
 
 const Register: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -23,20 +24,43 @@ const Register: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const { toast } = useToast()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (password !== confirmPassword) {
+    try {
+      if (password !== confirmPassword) {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "Passwords do not match.",
+          // action: <ToastAction altText="Try again">Try again</ToastAction>,
+        })
+        console.log("Passwords do not match")
+        return
+      }
+  
+      const response = await api.post("auth/register",
+        {
+          name,
+          email,
+          password
+        },
+        {
+          headers:{
+            "Content-Type":"application/json"
+          }
+  
+        }
+      ) 
+      console.log("Register submitted with:", { name, email, password })
+    } catch (error) {
+      console.error(error)
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Passwords do not match.",
-        // action: <ToastAction altText="Try again">Try again</ToastAction>,
+        description: "Please try Again later",
       })
-      console.log("Passwords do not match")
-      return
+      
     }
-    console.log("Register submitted with:", { name, email, password })
-    // Add registration handling logic here (e.g., API call)
   }
 
   return (

@@ -7,7 +7,7 @@ interface AuthLayoutProps{
 
 const AuthLayout = ({children}:AuthLayoutProps) => {
   return (
-    <div className="relative flex h-screen w-full items-center justify-center px-4 overflow-hidden bg-gray-950">
+    <div className="relative flex h-screen w-full items-center justify-center px-4 overflow-hidden bg-neutral-950">
     {/* taoster */}
     <Toaster/>
     {/* Animated background */}
