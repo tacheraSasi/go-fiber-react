@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Layout from './components/Layout';
 import Register from './pages/Auth/Register';
 import Welcome from './pages/Auth/Welcome';
+import { AppProvider } from './components/AppProvider';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -40,7 +41,11 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+      <RouterProvider router={router} />
+    // <AppProvider>
+    // </AppProvider>
+  );
 };
 
 export default App;

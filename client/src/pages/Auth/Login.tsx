@@ -12,16 +12,54 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
 import AuthLayout from './AuthLayout'
+import { api } from '@/lib/utils'
+import { toast } from '@/hooks/use-toast'
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Login submitted with:", { email, password })
-    // Add login handling logic here (e.g., API call)
+    try {
+      console.log("Login submitted with:", { email, password })
+      const response = await api.post(
+        '/auth/login',
+        {
+          email,
+          password
+        },
+        {
+          headers:{"Content-Type":"application/json"}
+        }
+        
+      )
+
+      if (response.data.message == "success"){
+        toast({
+          variant: "default",
+          title: "Login Successful!",
+          description: response.data.message || "You have successfully logged in.",
+        })
+
+        navigate("/welcome")
+      }else{
+        toast({
+          variant: "destructive",
+          title: "Login Failed!",
+          description: response.data.message || "Login failed Something went wrong.",
+        })
+      }
+    } catch (error) {
+      console.error(error)
+      toast({
+        variant: "destructive",
+        title: "Login Failed!",
+        description:"You have successfully logged in.",
+      })
+      
+    }
   }
 
   return (
