@@ -7,15 +7,15 @@ interface LayoutProps{
 
 const Layout :React.FC<LayoutProps>= ({children}) => {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <>
+      {/* <h1>Hello World</h1>
       <nav>
         <Link to="about">About Us</Link>
         <Link to="dashboard">Dashboard</Link>
         <Link to="home">Home</Link>
-      </nav>
+      </nav> */}
       {children}
-    </div>
+    </>
   )
 }
 
