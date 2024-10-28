@@ -3,6 +3,7 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -37,6 +38,12 @@ func encryptPassword(password string) string {
 	}
 	return string(hashedPassword)
 }
+
+func checkPassword(hashedPassword, password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+	return err == nil // returns true if the password matches
+}
+
 
 func Register(w http.ResponseWriter, r *http.Request) {
 	// Handle CORS preflight request
@@ -115,5 +122,24 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
 		http.Error(w,"Invalid request method",http.StatusMethodNotAllowed)
+		return
 	}
+
+	var user User
+	fmt.Println("&user",&user)
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil{
+		http.Error(w,err.Error(),http.StatusBadRequest)
+		return
+	}
+	log.Println("Recived login User",user)
+
+	//checking if user exists
+	// var existingUser User
+	err := DB.QueryRow("SELECT * FROM users WHERE email = ?",user.Email)
+
+	if err == nil{
+		//user exists
+		//DO
+	}
+
 }
