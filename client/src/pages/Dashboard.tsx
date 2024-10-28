@@ -59,7 +59,7 @@ const Dashboard = () => {
       <div className="flex-1 p-6 lg:p-8 space-y-8">
         {/* Header */}
         <header className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-green-500">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-neutral-400">Dashboard</h1>
           <button className="lg:hidden" onClick={toggleMobileNav}>
             <FiMenu size={24} />
           </button>

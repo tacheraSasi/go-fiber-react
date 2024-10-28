@@ -1448,6 +1448,11 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
+ekilirelay@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/ekilirelay/-/ekilirelay-1.0.3.tgz"
+  integrity sha512-AhvO7Ls/YMWzkvm4OoMUtSoUgRVqZPLXM761Gl4Kneae4xP+II2p4UgF8Fhh/Vwz+2i0OzXA6M+wa4xmLbphvQ==
+
 electron-to-chromium@^1.5.41:
   version "1.5.47"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.47.tgz"
