@@ -136,6 +136,11 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
+	
+	// Set CORS headers and content type
+	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
+	w.Header().Set("Content-Type", "application/json")
+	
 
 	// Decode JSON request to User struct
 	var user User
@@ -147,7 +152,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	// Query for the existing user
 	var existingUser User
-	err := DB.QueryRow("SELECT id, name, email, password FROM users WHERE email = ?", user.Email).Scan(
+	err := DB.QueryRow("SELECT id, username, email, password FROM users WHERE email = ?", user.Email).Scan(
 		&existingUser.ID, &existingUser.Name, &existingUser.Email, &existingUser.Password,
 	)
 	if err != nil {

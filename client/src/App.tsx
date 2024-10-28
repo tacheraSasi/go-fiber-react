@@ -35,7 +35,7 @@ const App = () => {
     { path: 'about', element: <About /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
-    { path: 'welcome', element: <Welcome /> },
+    { path: 'welcome', element: <ProtectedRoute><Welcome /></ProtectedRoute> },
     {
       path: '/home',
       element: <Home />,
