@@ -77,7 +77,7 @@ const Login: React.FC = () => {
           <CardHeader className="space-y-1 pb-6">
             <CardTitle className="text-2xl font-semibold text-neutral-100">Welcome back</CardTitle>
             <CardDescription className="text-neutral-400">
-              Enter your credentials to access your account
+              Enter your cgreenentials to access your account
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -93,7 +93,7 @@ const Login: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                   />
                 </div>
               </div>
@@ -107,7 +107,7 @@ const Login: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-green-500 focus:border-green-500"
                   />
                   <button
                     type="button"
@@ -119,12 +119,12 @@ const Login: React.FC = () => {
                 </div>
               </div>
             </div>
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-md transition-colors">
+            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-md transition-colors">
               Sign In
             </Button>
             <div className="text-center text-sm text-neutral-400">
               Don't have an account?{" "}
-              <Link to="/register" className="text-red-400 hover:text-red-300 font-medium transition-colors">
+              <Link to="/register" className="text-green-400 hover:text-green-300 font-medium transition-colors">
                 Create one here
               </Link>
             </div>

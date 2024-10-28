@@ -56,12 +56,12 @@ const Register: React.FC = () => {
   
       // Handle success response from the Go backend
       if (response.data.message == "success") {
-        //redirecting to the login page 
+        //greenirecting to the login page 
         navigate("/login")
         toast({
           variant: "default",
           title: "Registration Successful!",
-          description: response.data.message || "You have successfully registered.",
+          description: response.data.message || "You have successfully registegreen.",
         })
         console.log("Register submitted with:", { name, email, password })
       }
@@ -100,7 +100,7 @@ const Register: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-3 placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                  className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-3 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                 />
               </div>
 
@@ -116,7 +116,7 @@ const Register: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                   />
                 </div>
               </div>
@@ -132,7 +132,7 @@ const Register: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-green-500 focus:border-green-500"
                   />
                   <button
                     type="button"
@@ -156,18 +156,18 @@ const Register: React.FC = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
-                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-red-500 focus:border-red-500"
+                    className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 pr-10 focus:ring-green-500 focus:border-green-500"
                   />
                 </div>
               </div>
             </div>
 
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-md transition-colors">
+            <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-md transition-colors">
               Sign Up
             </Button>
             <div className="text-center text-sm text-neutral-400">
               Already have an account?{" "}
-              <Link to="/login" className="text-red-400 hover:text-red-300 font-medium transition-colors">
+              <Link to="/login" className="text-green-400 hover:text-green-300 font-medium transition-colors">
                 Sign in here
               </Link>
             </div>
