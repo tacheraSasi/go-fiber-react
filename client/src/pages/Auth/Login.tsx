@@ -14,12 +14,16 @@ import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
 import AuthLayout from './AuthLayout'
 import { api } from '@/lib/utils'
 import { toast } from '@/hooks/use-toast'
+import { useAuth } from '@/context/AuthProvider'
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
+
+  //from the authcontext provider
+  const {login} = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -43,7 +47,8 @@ const Login: React.FC = () => {
           title: "Login Successful!",
           description: response.data.message || "You have successfully logged in.",
         })
-
+        
+        login("")
         navigate("/welcome")
       }else{
         console.log(response.data.message)
@@ -58,7 +63,7 @@ const Login: React.FC = () => {
       toast({
         variant: "destructive",
         title: "Login Failed!",
-        description:"You have successfully logged in.",
+        description:"Login failed Something went wrong.",
       })
       
     }

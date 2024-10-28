@@ -3,21 +3,32 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
+	"time"
+
+	// "fmt"
 	"log"
 	"net/http"
 
+	// "github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/tacherasasi/go-react/db" // Import the db package
 	"golang.org/x/crypto/bcrypt"
 )
 
 var DB *sql.DB
 
+var jwtKey = []byte("secret")
+
 type User struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+// JWT claims structure
+type Claims struct {
+    Email string `json:"email"`
+    jwt.RegisteredClaims
 }
 
 func init() {
@@ -107,12 +118,11 @@ func Register(w http.ResponseWriter, r *http.Request) {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	// Check if DB is connected
 	if DB != nil {
 		log.Println("Database connected successfully in Login")
 	}
 
-	// Handle CORS preflight request
+	// Handle CORS preflight
 	if r.Method == http.MethodOptions {
 		w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
@@ -121,13 +131,13 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Check for POST method
+	// Only allow POST requests
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
 
-	// Decode incoming JSON to User struct
+	// Decode JSON request to User struct
 	var user User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
 		http.Error(w, "Invalid JSON data", http.StatusBadRequest)
@@ -135,27 +145,70 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("Received login User:", user)
 
-	// Query for existing user by email
+	// Query for the existing user
 	var existingUser User
 	err := DB.QueryRow("SELECT id, name, email, password FROM users WHERE email = ?", user.Email).Scan(
 		&existingUser.ID, &existingUser.Name, &existingUser.Email, &existingUser.Password,
 	)
-
 	if err != nil {
-		http.Error(w, "User does not exist", http.StatusNotFound)
+		http.Error(w, "User does not exist", http.StatusUnauthorized)
+		log.Println(err)
 		return
 	}
 
-	// Check if password matches
+	// Check password
 	if !checkPassword(existingUser.Password, user.Password) {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return
 	}
 
-	// Send successful response
+	// Generate JWT token
+	expirationTime := time.Now().Add(5 * time.Minute)
+	claims := &Claims{
+		Email: existingUser.Email,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(expirationTime),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := token.SignedString(jwtKey)
+	if err != nil {
+		http.Error(w, "Could not create token", http.StatusInternalServerError)
+		return
+	}
+
+	// Set JWT as a cookie
+	http.SetCookie(w, &http.Cookie{
+		Name:    "token",
+		Value:   tokenString,
+		Expires: expirationTime,
+	})
+
+	// Send response
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	response := map[string]string{"message": "success"}
 	json.NewEncoder(w).Encode(response)
+}
+
+func handleJWT(claims Claims){
+	
+	expirationTime := time.Now().Add(5 * time.Minute)
+    claims := &Claims{
+        Username: creds.Username,
+        RegisteredClaims: jwt.RegisteredClaims{
+            ExpiresAt: jwt.NewNumericDate(expirationTime),
+        },
+    }
+
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+    tokenString, _ := token.SignedString(jwtKey)
+
+    http.SetCookie(w, &http.Cookie{
+        Name:    "token",
+        Value:   tokenString,
+        Expires: expirationTime,
+    })
 }
 

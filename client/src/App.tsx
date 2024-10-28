@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import Register from './pages/Auth/Register';
 import Welcome from './pages/Auth/Welcome';
 import { AppProvider } from './components/AppProvider';
+import { AuthProvider } from './context/AuthProvider';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -42,7 +43,9 @@ const App = () => {
   ]);
 
   return (
+    <AuthProvider>
       <RouterProvider router={router} />
+    </AuthProvider>
     // <AppProvider>
     // </AppProvider>
   );
