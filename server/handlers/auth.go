@@ -107,45 +107,55 @@ func Register(w http.ResponseWriter, r *http.Request) {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
+	// Check if DB is connected
 	if DB != nil {
-		log.Println("Database connected successfully in register")
+		log.Println("Database connected successfully in Login")
 	}
 
+	// Handle CORS preflight request
 	if r.Method == http.MethodOptions {
 		w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
-		w.Header().Set("Allow-Control-Allow-Methods", "POST,OPTIONS")
-		w.Header().Set("Allow-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.WriteHeader(http.StatusOK)
 		return
 	}
 
+	// Check for POST method
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
 
+	// Decode incoming JSON to User struct
 	var user User
-	fmt.Println("&user", &user)
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, "Invalid JSON data", http.StatusBadRequest)
 		return
 	}
-	log.Println("Recived login User", user)
+	log.Println("Received login User:", user)
 
-	//checking if user exists
+	// Query for existing user by email
 	var existingUser User
-	err := DB.QueryRow("SELECT * FROM users WHERE email = ?", user.Email).Scan(&existingUser.ID, &existingUser.Name, &existingUser.Email)
+	err := DB.QueryRow("SELECT id, name, email, password FROM users WHERE email = ?", user.Email).Scan(
+		&existingUser.ID, &existingUser.Name, &existingUser.Email, &existingUser.Password,
+	)
 
-	if err == nil {
-		//user exists
-		if !checkPassword(existingUser.Password, user.Password) {
-			http.Error(w, "Invalid credentials", http.StatusNotFound)
-			return
-
-		}
-		w.WriteHeader(http.StatusOK)
-		response := map[string]string{"message": "success"}
-		json.NewEncoder(w).Encode(response)
+	if err != nil {
+		http.Error(w, "User does not exist", http.StatusNotFound)
+		return
 	}
 
+	// Check if password matches
+	if !checkPassword(existingUser.Password, user.Password) {
+		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+		return
+	}
+
+	// Send successful response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	response := map[string]string{"message": "success"}
+	json.NewEncoder(w).Encode(response)
 }
+

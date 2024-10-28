@@ -46,6 +46,7 @@ const Login: React.FC = () => {
 
         navigate("/welcome")
       }else{
+        console.log(response.data.message)
         toast({
           variant: "destructive",
           title: "Login Failed!",
