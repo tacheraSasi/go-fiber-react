@@ -1,8 +1,9 @@
+import Background from '@/components/Background'
 import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <Background>Dashboard</Background>
   )
 }
 
