@@ -48,7 +48,7 @@ const Login: React.FC = () => {
           description: response.data.message || "You have successfully logged in.",
         })
         
-        login("")
+        login(response.data.token)
         navigate("/welcome")
       }else{
         console.log(response.data.message)
