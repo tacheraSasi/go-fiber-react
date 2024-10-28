@@ -163,7 +163,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Generate JWT token
-	expirationTime := time.Now().Add(5 * time.Minute)
+	expirationTime := time.Now().Add(48 * time.Hour)
 	claims := &Claims{
 		Email: existingUser.Email,
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -192,23 +192,4 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func handleJWT(claims Claims){
-	
-	expirationTime := time.Now().Add(5 * time.Minute)
-    claims := &Claims{
-        Username: creds.Username,
-        RegisteredClaims: jwt.RegisteredClaims{
-            ExpiresAt: jwt.NewNumericDate(expirationTime),
-        },
-    }
-
-    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-    tokenString, _ := token.SignedString(jwtKey)
-
-    http.SetCookie(w, &http.Cookie{
-        Name:    "token",
-        Value:   tokenString,
-        Expires: expirationTime,
-    })
-}
 
