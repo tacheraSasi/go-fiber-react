@@ -104,4 +104,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
     if DB != nil {
         log.Println("Database connected successfully in register")
     }
+
+	if r.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin",FrontendUrl)
+		w.Header().Set("Allow-Control-Allow-Methods","POST,OPTIONS")
+		w.Header().Set("Allow-Control-Allow-Headers","Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	if r.Method != http.MethodPost {
+		http.Error(w,"Invalid request method",http.StatusMethodNotAllowed)
+	}
 }
