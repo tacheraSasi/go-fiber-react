@@ -7,7 +7,7 @@ interface LayoutProps{
 
 const Layout :React.FC<LayoutProps>= ({children}) => {
   return (
-    <>
+    <div className='flex bg-neutral-900 text-white'>
       {/* <h1>Hello World</h1>
       <nav>
         <Link to="about">About Us</Link>
@@ -15,7 +15,7 @@ const Layout :React.FC<LayoutProps>= ({children}) => {
         <Link to="home">Home</Link>
       </nav> */}
       {children}
-    </>
+    </div>
   )
 }
 
