@@ -134,12 +134,19 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	log.Println("Recived login User",user)
 
 	//checking if user exists
-	// var existingUser User
-	err := DB.QueryRow("SELECT * FROM users WHERE email = ?",user.Email)
+	var existingUser User
+	err := DB.QueryRow("SELECT * FROM users WHERE email = ?",user.Email).Scan(&existingUser.ID, &existingUser.Name, &existingUser.Email)
 
 	if err == nil{
 		//user exists
-		//DO
+		if !checkPassword(existingUser.Password,user.Password) {
+			http.Error(w,"Invalid credentials",http.StatusNotFound)
+			return
+			
+		}
+		w.WriteHeader(http.StatusOK)
+		response := map[string]string{"message":"success"}
+		json.NewEncoder(w).Encode(response)
 	}
 
 }
