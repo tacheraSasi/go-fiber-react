@@ -14,7 +14,7 @@ var FrontendUrl string = "http://localhost:5173"
 
 func main() {
 	print("Server starting on port 4000")
-	handlers.LogError("testing","testing","200","main.go")
+	// handlers.LogError("testing","testing","200","main.go")
 
 	// ServeMux/Router to handle routing
 	mux := http.NewServeMux()

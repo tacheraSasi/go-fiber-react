@@ -1,10 +1,12 @@
 package db
 
 import (
-    "database/sql"
-    "log"
+	"database/sql"
+	"fmt"
+	"log"
 
-    _ "github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
+	"github.com/tacherasasi/go-react/handlers"
 )
 
 var DB *sql.DB
@@ -19,9 +21,12 @@ func Init() (*sql.DB, error) {
 
     // Verify the connection
     if err := db.Ping(); err != nil {
-        log.Fatal("Database ping failed:", err)
+        errorMessage := fmt.Sprintf("Database ping failed: %v", err)
+        log.Fatal(errorMessage)
+        handlers.LogError("Database Connection Error", errorMessage)
         return nil, err
     }
+
 
     // SQL to create the users table if it doesn't exist
     createTableSQL := `
