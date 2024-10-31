@@ -5,8 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/tacherasasi/go-react/db" //Importing the db package
+	"github.com/tacherasasi/go-react/db"       //Importing the db package
 	"github.com/tacherasasi/go-react/handlers" // Importing the handlers package
+	"github.com/tacherasasi/go-react/utils"
 )
 var print = fmt.Println
 
@@ -14,7 +15,7 @@ var FrontendUrl string = "http://localhost:5173"
 
 func main() {
 	print("Server starting on port 4000")
-	// handlers.LogError("testing","testing","200","main.go")
+	utils.LogError("testing","testing","main.go")
 
 	// ServeMux/Router to handle routing
 	mux := http.NewServeMux()

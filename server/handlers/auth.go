@@ -11,7 +11,7 @@ import (
 
 	// "github.com/dgrijalva/jwt-go"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/tacherasasi/go-react/db" // Import the db package
+	"github.com/tacherasasi/go-react/db"
 	"golang.org/x/crypto/bcrypt"
 )
 
