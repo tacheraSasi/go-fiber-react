@@ -24,7 +24,7 @@ func LogError(title, desc, location string) {
 
 	
 	// Constructing the email content with title and description
-	message := fmt.Sprintf("Error: %s\n\n Location: %s\n\n Details: %s", title,location, desc)
+	message := fmt.Sprintf("Error: %s\n\n 	Location: %s\n\n 	Details: %s", title,location, desc)
 	logger.Println(message)//logging the error in the ../app.log file
 	
 	// Sending the email with EkiliRelay
