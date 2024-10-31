@@ -3,6 +3,7 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	// "fmt"
@@ -12,6 +13,7 @@ import (
 	// "github.com/dgrijalva/jwt-go"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/tacherasasi/go-react/db"
+	"github.com/tacherasasi/go-react/utils"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -37,17 +39,27 @@ func init() {
 	DB, err = db.Init()
 	if err != nil {
 		log.Fatal("Failed to connect to the database:", err)
+		utils.LogError(
+			"Failed to connect to the database", 
+            fmt.Sprintf("Connection error: %v",err),
+            "handlers/auth.go",
+        )
 	}
 }
 
-func encryptPassword(password string) string {
+func encryptPassword(password string) (string,error) {
 	// Hash the password with a cost of 10 (you can adjust this value)
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		log.Printf("Error while hashing password: %v", err)
-		return ""
+		utils.LogError(
+			"Error while hashing password", 
+            fmt.Sprintf("Password Hashing error: %v",err),
+            "handlers/auth.go",
+        )
+		return "",err
 	}
-	return string(hashedPassword)
+	return string(hashedPassword),nil
 }
 
 func checkPassword(hashedPassword, password string) bool {
@@ -104,7 +116,11 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Insert the new user into the database
-	hashedPassword := encryptPassword(user.Password) // Hash the password
+	hashedPassword,err := encryptPassword(user.Password) // Hash the password
+	if err != nil{
+		//TODO:i will do some logic here
+		return
+	}
 	_, err = DB.Exec("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", user.Name, user.Email, hashedPassword)
 	if err != nil {
 		log.Printf("Error inserting user into database: %v", err) // Log the error
