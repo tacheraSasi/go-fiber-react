@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"github.com/tacherasasi/go-react/db" //Importing the db package
-	ekili "github.com/tacherasasi/go-react/ekilirelay"
 	"github.com/tacherasasi/go-react/handlers" // Importing the handlers package
 )
 var print = fmt.Println
@@ -15,7 +14,7 @@ var FrontendUrl string = "http://localhost:5173"
 
 func main() {
 	print("Server starting on port 4000")
-	// handlers.LogError("testing","testing","200","main.go")
+	handlers.LogError("testing","testing","200","main.go")
 
 	// ServeMux/Router to handle routing
 	mux := http.NewServeMux()
@@ -40,20 +39,4 @@ func main() {
 	// Starting the server
 	log.Fatal(http.ListenAndServe(":4000", mux))
 
-	//testing ekilirelay
-	relay := ekili.NewEkiliRelay("your-api-key")
-    
-    response, err := relay.SendEmail(
-        "recipient@example.com",
-        "Test Subject",
-        "Test Message",
-        "", // optional headers
-    )
-    
-    if err != nil {
-        fmt.Printf("Error sending email: %v\n", err)
-        return
-    }
-    
-    fmt.Printf("Email sent: %s - %s\n", response.Status, response.Message)
 }
