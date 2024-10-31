@@ -11,25 +11,29 @@ import (
 
 var DB *sql.DB
 
-// Init initializes the SQLite database connection and creates the users table 
+// Init initializes the SQLite database connection and creates the users table
 func Init() (*sql.DB, error) {
-    db, err := sql.Open("sqlite3", "./db.sqlite")
-    if err != nil {
-        log.Fatal("Failed to initialize the SQLite connection:", err)
-        return nil, err
-    }
+	db, err := sql.Open("sqlite3", "./db.sqlite")
+	if err != nil {
+		log.Fatal("Failed to initialize the SQLite connection:", err)
+		utils.LogError(
+			"Failed to initialize the SQLite connection", 
+            fmt.Sprintf("Connectionn error: %v",err),
+            "db/init.go",
+        )
+		return nil, err
+	}
 
-    // Verify the connection
-    if err := db.Ping(); err != nil {
-        errorMessage := fmt.Sprintf("Database ping failed: %v", err)
-        log.Fatal(errorMessage)
-        utils.LogError("Database Connection Error", errorMessage,"init.go")
-        return nil, err
-    }
+	// Verify the connection
+	if err := db.Ping(); err != nil {
+		errorMessage := fmt.Sprintf("Database ping failed: %v", err)
+		log.Fatal(errorMessage)
+		utils.LogError("Database Connection Error", errorMessage, "db/init.go")
+		return nil, err
+	}
 
-
-    // SQL to create the users table if it doesn't exist
-    createTableSQL := `
+	// SQL to create the users table if it doesn't exist
+	createTableSQL := `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT NOT NULL,
@@ -37,14 +41,14 @@ func Init() (*sql.DB, error) {
         password TEXT NOT NULL
     );`
 
-    // Execute the SQL to create the table
-    _, err = db.Exec(createTableSQL)
-    if err != nil {
-        log.Fatal("Failed to create users table:", err)
-        return nil, err
-    }
+	// Execute the SQL to create the table
+	_, err = db.Exec(createTableSQL)
+	if err != nil {
+		log.Fatal("Failed to create users table:", err)
+		return nil, err
+	}
 
-    log.Println("Database initialized and users table checked/created successfully.")
-    DB = db
-    return DB, nil
+	log.Println("Database initialized and users table checked/created successfully.")
+	DB = db
+	return DB, nil
 }
