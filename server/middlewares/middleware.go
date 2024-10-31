@@ -1,29 +1,30 @@
-// package middlewares
+package middlewares
 
-// import (
-// 	"net/http"
+import (
+	"net/http"
 
-// 	"github.com/golang-jwt/jwt/v5"
-// )
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/tacherasasi/go-react/handlers"
+)
 
-// func authMiddleware(next http.Handler) http.Handler {
-//     return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-//         cookie, err := r.Cookie("token")
-//         if err != nil {
-//             http.Error(w, "Forbidden", http.StatusForbidden)
-//             return
-//         }
+func AuthMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        cookie, err := r.Cookie("token")
+        if err != nil {
+            http.Error(w, "Forbidden", http.StatusForbidden)
+            return
+        }
 
-//         claims := &Claims{}
-//         token, err := jwt.ParseWithClaims(cookie.Value, claims, func(token *jwt.Token) (interface{}, error) {
-//             return jwtKey, nil
-//         })
+        claims := &handlers.Claims{}
+        token, err := jwt.ParseWithClaims(cookie.Value, claims, func(token *jwt.Token) (interface{}, error) {
+            return handlers.JwtKey, nil
+        })
 
-//         if err != nil || !token.Valid {
-//             http.Error(w, "Forbidden", http.StatusForbidden)
-//             return
-//         }
+        if err != nil || !token.Valid {
+            http.Error(w, "Forbidden", http.StatusForbidden)
+            return
+        }
 
-//         next.ServeHTTP(w, r)
-//     })
-// }
+        next.ServeHTTP(w, r)
+    })
+}

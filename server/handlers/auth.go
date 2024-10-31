@@ -17,7 +17,7 @@ import (
 
 var DB *sql.DB
 
-var jwtKey = []byte("secret")
+var JwtKey = []byte("secret")
 
 type User struct {
 	ID       int    `json:"id"`
@@ -177,7 +177,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(jwtKey)
+	tokenString, err := token.SignedString(JwtKey)
 	if err != nil {
 		http.Error(w, "Could not create token", http.StatusInternalServerError)
 		return
