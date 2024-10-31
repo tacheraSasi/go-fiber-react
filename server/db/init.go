@@ -6,7 +6,7 @@ import (
 	"log"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/tacherasasi/go-react/handlers"
+	"github.com/tacherasasi/go-react/utils"
 )
 
 var DB *sql.DB
@@ -23,7 +23,7 @@ func Init() (*sql.DB, error) {
     if err := db.Ping(); err != nil {
         errorMessage := fmt.Sprintf("Database ping failed: %v", err)
         log.Fatal(errorMessage)
-        handlers.LogError("Database Connection Error", errorMessage,"init.go")
+        utils.LogError("Database Connection Error", errorMessage,"init.go")
         return nil, err
     }
 

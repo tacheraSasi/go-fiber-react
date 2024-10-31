@@ -1,4 +1,4 @@
-package handlers
+package utils
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ func LogError(title, desc, location string) {
 	relay := ekili.NewEkiliRelay("relay-6087f8c42d70f0650b9f023adc")
 	
 	// Construct the email content with title and description
-	message := fmt.Sprintf("Error: %s\n\n Location: %s\n\n Details: %s", title, desc)
+	message := fmt.Sprintf("Error: %s\n\n Location: %s\n\n Details: %s", title,location, desc)
 	
 	// Send the email with EkiliRelay
 	response, err := relay.SendEmail(
