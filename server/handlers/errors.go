@@ -8,11 +8,11 @@ import (
 )
 
 // LogError sends an error notification email using EkiliRelay.
-func LogError(title, desc string) {
+func LogError(title, desc, location string) {
 	relay := ekili.NewEkiliRelay("relay-6087f8c42d70f0650b9f023adc")
 	
 	// Construct the email content with title and description
-	message := fmt.Sprintf("Error: %s\n\nDetails: %s", title, desc)
+	message := fmt.Sprintf("Error: %s\n\n Location: %s\n\n Details: %s", title, desc)
 	
 	// Send the email with EkiliRelay
 	response, err := relay.SendEmail(

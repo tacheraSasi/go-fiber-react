@@ -23,7 +23,7 @@ func Init() (*sql.DB, error) {
     if err := db.Ping(); err != nil {
         errorMessage := fmt.Sprintf("Database ping failed: %v", err)
         log.Fatal(errorMessage)
-        handlers.LogError("Database Connection Error", errorMessage)
+        handlers.LogError("Database Connection Error", errorMessage,"init.go")
         return nil, err
     }
 
