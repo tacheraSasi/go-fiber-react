@@ -18,7 +18,7 @@ func Init() (*sql.DB, error) {
 		log.Fatal("Failed to initialize the SQLite connection:", err)
 		utils.LogError(
 			"Failed to initialize the SQLite connection", 
-            fmt.Sprintf("Connectionn error: %v",err),
+            fmt.Sprintf("Connection error: %v",err),
             "db/init.go",
         )
 		return nil, err
@@ -45,6 +45,11 @@ func Init() (*sql.DB, error) {
 	_, err = db.Exec(createTableSQL)
 	if err != nil {
 		log.Fatal("Failed to create users table:", err)
+        utils.LogError(
+			"Failed to create users table", 
+            fmt.Sprintf("Creatin user table: %v",err),
+            "db/init.go",
+        )
 		return nil, err
 	}
 
