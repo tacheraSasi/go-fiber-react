@@ -3,9 +3,10 @@ import { FiX } from 'react-icons/fi'
 
 interface MobNavProps{
     toggleMobileNav: () => void;
+    isMobileNavOpen: boolean
 }
 
-const MobileNav = ({toggleMobileNav}:MobNavProps) => {
+const MobileNav = ({toggleMobileNav,isMobileNavOpen}:MobNavProps) => {
     
   return (
     <div className={`fixed top-0 left-0 w-64 h-full bg-neutral-800 transition-transform transform ${isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>

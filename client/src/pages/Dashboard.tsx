@@ -30,7 +30,7 @@ const Dashboard = () => {
   return (
     <div className="flex min-h-screen bg-neutral-900 text-white">
       {/* Mobile Nav */}
-      <MobileNav toggleMobileNav={toggleMobileNav}/>
+      <MobileNav toggleMobileNav={toggleMobileNav} isMobileNavOpen={isMobileNavOpen}/>
 
       <Sidebar />
 
