@@ -1,3 +1,4 @@
+import MobileNav from '@/components/MobileNav';
 import Sidebar from '@/components/Sidebar';
 import UserDrawer from '@/components/UserDrawer';
 import React, { useState } from 'react';
@@ -29,7 +30,7 @@ const Dashboard = () => {
   return (
     <div className="flex min-h-screen bg-neutral-900 text-white">
       {/* Mobile Nav */}
-      
+      <MobileNav toggleMobileNav={toggleMobileNav}/>
 
       <Sidebar />
 
