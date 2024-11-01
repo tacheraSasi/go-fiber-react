@@ -30,7 +30,7 @@ const Dashboard = () => {
       {/* Mobile Nav */}
       <div className={`fixed top-0 left-0 w-64 h-full bg-neutral-800 transition-transform transform ${isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>
         <div className="p-4 flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-green-500">ekiliHive</h2>
+          <h2 className="text-2xl font-bold text-green-400">ekiliHive</h2>
           <button onClick={toggleMobileNav}>
             <FiX size={24} />
           </button>
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
       {/* Sidebar for larger screens */}
       <aside className="w-64 p-6 bg-neutral-800 hidden lg:block">
-        <h2 className="text-2xl font-bold text-green-500 mb-8">ekiliHive</h2>
+        <h2 className="text-2xl font-bold text-green-400 mb-8">ekiliHive</h2>
         <nav className="space-y-6">
           {['Projects', 'Analytics', 'Reports', 'Notifications'].map((tab) => (
             <button key={tab} className="w-full text-left px-4 py-3 rounded-lg text-neutral-300 hover:bg-neutral-700 hover:text-green-500 transition">
@@ -76,7 +76,7 @@ const Dashboard = () => {
             { title: 'Feedbacks', value: '350', change: '+20 this month', icon: <FiDollarSign size={24} /> },
           ].map((card) => (
             <div key={card.title} className="p-6 bg-neutral-800 rounded-lg shadow-md flex items-center space-x-4 border border-neutral-700">
-              <div className="text-green-500">{card.icon}</div>
+              <div className="text-green-300">{card.icon}</div>
               <div>
                 <h3 className="text-lg font-semibold">{card.title}</h3>
                 <p className="text-2xl font-bold">{card.value}</p>
@@ -96,8 +96,8 @@ const Dashboard = () => {
                 <CartesianGrid strokeDasharray="3 3" stroke="#444" />
                 <XAxis dataKey="month" stroke="#888" />
                 <YAxis stroke="#888" />
-                <Tooltip cursor={{ fill: 'transparent' }} />
-                <Bar dataKey="revenue" fill="#00b4b4" />
+                <Tooltip  cursor={{ fill: 'transparent' }} />
+                <Bar dataKey="revenue" fill="#86efac" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -118,7 +118,7 @@ const Dashboard = () => {
                     <p className="text-neutral-300 font-medium">{project.name}</p>
                     <p className="text-neutral-500 text-sm">Owner: {project.owner}</p>
                   </div>
-                  <p className="text-green-500 font-semibold">{project.date}</p>
+                  <p className="text-green-300 font-semibold">{project.date}</p>
                 </li>
               ))}
             </ul>
