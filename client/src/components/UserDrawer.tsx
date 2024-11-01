@@ -13,6 +13,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import { UserRound } from "lucide-react"
 
 const data = [
   {
@@ -56,7 +57,7 @@ const data = [
   },
 ]
 
-export function DrawerDemo() {
+export default function UserDrawer() {
   const [goal, setGoal] = React.useState(350)
 
   function onClick(adjustment: number) {
@@ -64,9 +65,9 @@ export function DrawerDemo() {
   }
 
   return (
-    <Drawer>
+    <Drawer >
       <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
+        <Button className="bg-neutral-700 hover:bg-neutral-600"><UserRound /></Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
