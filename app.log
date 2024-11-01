@@ -8,3 +8,8 @@ LOG: 2024/11/01 01:08:16 errors.go:28: Error: testing
  	Location: main.go
 
  	Details: testing
+LOG: 2024/11/01 17:47:22 errors.go:28: Error: testing
+
+ 	Location: main.go
+
+ 	Details: testing
