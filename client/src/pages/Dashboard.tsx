@@ -1,3 +1,4 @@
+import UserDrawer from '@/components/UserDrawer';
 import React, { useState } from 'react';
 import { FiDollarSign, FiUser, FiShoppingCart, FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
@@ -63,10 +64,7 @@ const Dashboard = () => {
           <button className="lg:hidden" onClick={toggleMobileNav}>
             <FiMenu size={24} />
           </button>
-          <div className="hidden lg:flex space-x-4">
-            <button className="px-4 py-2 bg-neutral-700 text-neutral-300 rounded-lg">Date Range</button>
-            <button className="px-4 py-2 bg-green-500 text-neutral-300 rounded-lg">Download</button>
-          </div>
+          <UserDrawer />
         </header>
 
         {/* Metric Cards */}
