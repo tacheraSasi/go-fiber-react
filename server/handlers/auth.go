@@ -183,26 +183,22 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Generate JWT token
-	expirationTime := time.Now().Add(48 * time.Hour)
-	claims := &Claims{
-		Email: existingUser.Email,
-		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(expirationTime),
-		},
-	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(JwtKey)
+	// Generating JWT token
+	tokenString, err := utils.GenerateJWT(existingUser.Email)
 	if err != nil {
 		http.Error(w, "Could not create token", http.StatusInternalServerError)
+		utils.LogError(
+		"Could not create token",
+		fmt.Sprintf("Failed to create the jwt token: %v",err),
+		"auth.go",
+	)
 		return
 	}
 
 	http.SetCookie(w, &http.Cookie{
 		Name:    "token",
 		Value:   tokenString,
-		Expires: expirationTime,
+		Expires: time.Now().Add(48 * time.Hour),//Valid for 2 day
 	})
 
 	// Sending response with the user data (excluding password) and the token
