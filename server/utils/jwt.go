@@ -14,7 +14,7 @@ type Claims struct {
 
 // GenerateJWT generates a JWT token
 func GenerateJWT(email string) (string, error) {
-    expirationTime := time.Now().Add(1 * time.Hour)
+    expirationTime := time.Now().Add(48 * time.Hour)
     claims := &Claims{
         Email: email,
         RegisteredClaims: jwt.RegisteredClaims{

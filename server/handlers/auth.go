@@ -199,18 +199,17 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Set JWT as a cookie (optional)
 	http.SetCookie(w, &http.Cookie{
 		Name:    "token",
 		Value:   tokenString,
 		Expires: expirationTime,
 	})
 
-	// Send response with the user data (excluding password) and the token
+	// Sending response with the user data (excluding password) and the token
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	// Prepare the response structure
+	// response structure
 	response := map[string]interface{}{
 		"message": "success",
 		"token":   tokenString,
@@ -221,7 +220,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	// Encode and send the response
+	// Encoding and sending the response
 	json.NewEncoder(w).Encode(response)
 }
 
