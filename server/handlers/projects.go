@@ -1,4 +1,8 @@
 package handlers
+/***
+TODO:REMEMBER TO IMPLEMENT AUTHORIZATION IN THE SECTION
+CURRENTLY THE API IS ACCESSIBLE TO EVERYONE .....
+**/
 
 import (
 	"encoding/json"
@@ -61,7 +65,32 @@ func AddProject(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetAllProjects() {}
+func GetAllProjects(w http.ResponseWriter, r *http.Request) {
+	// Handle CORS preflight request
+	if r.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	// Ensure this is a POST request
+	if r.Method != http.MethodGet {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Set CORS headers and content type
+	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
+	w.Header().Set("Content-Type", "application/json")
+
+	fmt.Println(r.Body)
+
+	// projects,err := DB.Exec("SELECT * FROM projects WHERE owner = ? ",)
+
+
+}
 
 func EditProject() {}
 
