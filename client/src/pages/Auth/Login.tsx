@@ -77,7 +77,7 @@ const Login: React.FC = () => {
           <CardHeader className="space-y-1 pb-6">
             <CardTitle className="text-2xl font-semibold text-neutral-100">Welcome back</CardTitle>
             <CardDescription className="text-neutral-400">
-              Enter your cgreenentials to access your account
+              Enter your credentials to access your account
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">

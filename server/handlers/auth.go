@@ -27,10 +27,11 @@ type User struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
 // JWT claims structure
 type Claims struct {
-    Email string `json:"email"`
-    jwt.RegisteredClaims
+	Email string `json:"email"`
+	jwt.RegisteredClaims
 }
 
 func init() {
@@ -40,31 +41,32 @@ func init() {
 	if err != nil {
 		log.Fatal("Failed to connect to the database:", err)
 		utils.LogError(
-			"Failed to connect to the database", 
-            fmt.Sprintf("Connection error: %v",err),
-            "handlers/auth.go",
-        )
+			"Failed to connect to the database",
+			fmt.Sprintf("Connection error: %v", err),
+			"handlers/auth.go",
+		)
 	}
 }
 
-func encryptPassword(password string) (string,error) {
+func encryptPassword(password string) (string, error) {
 	// Hash the password with a cost of 10 (you can adjust this value)
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		log.Printf("Error while hashing password: %v", err)
 		utils.LogError(
-			"Error while hashing password", 
-            fmt.Sprintf("Password Hashing error: %v",err),
-            "handlers/auth.go",
-        )
-		return "",err
+			"Error while hashing password",
+			fmt.Sprintf("Password Hashing error: %v", err),
+			"handlers/auth.go",
+		)
+		return "", err
 	}
-	return string(hashedPassword),nil
+	return string(hashedPassword), nil
 }
 
 func checkPassword(hashedPassword, password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	return err == nil // returns true if the password matches
+	
 }
 
 func Register(w http.ResponseWriter, r *http.Request) {
@@ -116,8 +118,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Insert the new user into the database
-	hashedPassword,err := encryptPassword(user.Password) // Hash the password
-	if err != nil{
+	hashedPassword, err := encryptPassword(user.Password) // Hash the password
+	if err != nil {
 		//TODO:i will do some logic here
 		return
 	}
@@ -152,11 +154,10 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	// Set CORS headers and content type
 	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
 	w.Header().Set("Content-Type", "application/json")
-	
 
 	// Decode JSON request to User struct
 	var user User
@@ -188,17 +189,17 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Could not create token", http.StatusInternalServerError)
 		utils.LogError(
-		"Could not create token",
-		fmt.Sprintf("Failed to create the jwt token: %v",err),
-		"auth.go",
-	)
+			"Could not create token",
+			fmt.Sprintf("Failed to create the jwt token: %v", err),
+			"auth.go",
+		)
 		return
 	}
 
 	http.SetCookie(w, &http.Cookie{
 		Name:    "token",
 		Value:   tokenString,
-		Expires: time.Now().Add(48 * time.Hour),//Valid for 2 day
+		Expires: time.Now().Add(48 * time.Hour), //Valid for 2 day
 	})
 
 	// Sending response with the user data (excluding password) and the token
@@ -219,5 +220,3 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	// Encoding and sending the response
 	json.NewEncoder(w).Encode(response)
 }
-
-

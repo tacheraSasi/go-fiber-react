@@ -17,6 +17,7 @@ import { useAuth } from "@/context/AuthProvider";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { toast } from "@/hooks/use-toast";
+import { api } from "@/lib/utils";
 
 export default function AddProject() {
   const [progress, setProgress] = useState("50");
@@ -26,9 +27,26 @@ export default function AddProject() {
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(e.target);
+    try {
+      const response = await api.post(
+        '/project/create',
+        {
+          progress,
+          title,
+          desc,
+          githubURL,
+        },
+        {
+          headers:{"Content-Type":"application/json"}
+        }
+        
+      )
+    } catch (error) {
+      
+    }
     toast({
       variant: "default",
       title: "Project created Successful!",
