@@ -2,7 +2,9 @@ import AddProject from "@/components/AddProject";
 import MobileNav from "@/components/MobileNav";
 import Sidebar from "@/components/Sidebar";
 import UserDrawer from "@/components/UserDrawer";
-import { useState } from "react";
+import { useAuth } from "@/context/AuthProvider";
+import { api } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import {
   FiDollarSign,
   FiUser,
@@ -40,9 +42,31 @@ const data = [
 
 const Dashboard = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  const { authenticatedUser } = useAuth();
+  const user = authenticatedUser;
 
   const toggleMobileNav = () => {
     setMobileNavOpen(!isMobileNavOpen);
+  };
+  useEffect(()=>{
+    getAllTasks()
+  },[])
+
+  const getAllTasks = async () => {
+    try {
+      const res = await api.post(
+        "/projects",
+        {
+          owner: user?.email,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if(res.data.message == "success"){
+        
+      }
+    } catch (error) {}
   };
 
   return (

@@ -1,4 +1,5 @@
 package handlers
+
 /***
 TODO:REMEMBER TO IMPLEMENT AUTHORIZATION IN THE SECTION
 CURRENTLY THE API IS ACCESSIBLE TO EVERYONE .....
@@ -16,7 +17,7 @@ type Project struct {
 	Desc      string `json:"desc"`
 	Progress  string `json:"progress"`
 	GithubURL string `json:"githubURL"`
-	Owner string `json:"owner"`
+	Owner     string `json:"owner"`
 }
 
 func AddProject(w http.ResponseWriter, r *http.Request) {
@@ -53,15 +54,15 @@ func AddProject(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(project)
 
-	_, err := DB.Exec("INSERT INTO projects (title,description,progress,githubURL,owner) VALUES (?,?,?,?,?)", project.Title, project.Desc, project.Progress, project.GithubURL,project.Owner)
-	if err != nil{
-		log.Printf("Error while inserting the project %v",err)
-		http.Error(w,"Failed to create the projects in the database",http.StatusInternalServerError)
+	_, err := DB.Exec("INSERT INTO projects (title,description,progress,githubURL,owner) VALUES (?,?,?,?,?)", project.Title, project.Desc, project.Progress, project.GithubURL, project.Owner)
+	if err != nil {
+		log.Printf("Error while inserting the project %v", err)
+		http.Error(w, "Failed to create the projects in the database", http.StatusInternalServerError)
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message":"success"})
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 
 }
 
@@ -89,6 +90,8 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 	// projects,err := DB.Exec("SELECT * FROM projects WHERE owner = ? ",)
 
+	w.WriteHeader(http.StatusOK)
+	
 
 }
 

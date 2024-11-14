@@ -39,6 +39,7 @@ func main() {
 	mux.HandleFunc("/api/todos/", handlers.HandleTodoUpdate)    // Specific todo update endpoint (PATCH)
 
 	mux.HandleFunc("/project/create" ,handlers.AddProject)
+	mux.HandleFunc("/projects",handlers.GetAllProjects)
 
 	http.Handle("/auth/login",middlewares.LogRequestMiddleware(mux))//TODO:fix this later
 	// Starting the server
