@@ -14,13 +14,17 @@ import {
 } from "@/components/ui/drawer";
 import { UserRound } from "lucide-react";
 import { useAuth } from "@/context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDrawer() {
   const { authenticatedUser,logout } = useAuth();
   const user = authenticatedUser;
 
+  const navigate = useNavigate();
+
   const handleLogout=()=>{
     logout()
+    navigate('/login')
   }
 
   return (

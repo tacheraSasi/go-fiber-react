@@ -10,6 +10,7 @@ import Register from './pages/Auth/Register';
 import Welcome from './pages/Auth/Welcome';
 import { AppProvider } from './components/AppProvider';
 import { AuthProvider } from './context/AuthProvider';
+import HelpCenter from './pages/Auth/HelpCenter';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -35,6 +36,7 @@ const App = () => {
     { path: 'about', element: <About /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
+    { path: 'help', element: <HelpCenter /> },
     { path: 'welcome', element: <ProtectedRoute><Welcome /></ProtectedRoute> },
     {
       path: '/home',
