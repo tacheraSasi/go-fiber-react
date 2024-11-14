@@ -26,6 +26,12 @@ export default function AddProject() {
   const [githubURL, setGithubURL] = useState("");
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
+  const clearInputs=()=>{
+    setTitle("")
+    setProgress("50")
+    setDesc("")
+    setGithubURL("")
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,20 +44,26 @@ export default function AddProject() {
           title,
           desc,
           githubURL,
+          owner:user?.email
         },
         {
           headers:{"Content-Type":"application/json"}
         }
         
       )
+      console.log(response)
+      if (response.data.message == "success"){
+        clearInputs()
+        toast({
+          variant: "default",
+          title: "Project created Successful!",
+          description:  "You have successfully created a PROJECT.",
+        })
+      }
     } catch (error) {
       
     }
-    toast({
-      variant: "default",
-      title: "Project created Successful!",
-      description:  "You have successfully created a PROJECT.",
-    })
+    
   };
   return (
     <Drawer>
@@ -118,25 +130,6 @@ export default function AddProject() {
                   </div>
                   <div className="space-y-2">
                     <Label
-                      htmlFor="Progress"
-                      className="text-sm font-medium text-neutral-300"
-                    >
-                      Progress {progress}%
-                    </Label>
-                    <div className="relative">
-                      <Input
-                        id="Progress"
-                        type="range"
-                        value={progress}
-                        onChange={(e) => {
-                          setProgress(e.target.value);
-                        }}
-                        className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label
                       htmlFor="email"
                       className="text-sm font-medium text-neutral-300"
                     >
@@ -155,12 +148,32 @@ export default function AddProject() {
                       />
                     </div>
                   </div>
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="Progress"
+                      className="text-sm font-medium text-neutral-300"
+                    >
+                      Progress {progress}%
+                    </Label>
+                    <div className="relative">
+                      <Input
+                        id="Progress"
+                        type="range"
+                        value={progress}
+                        onChange={(e) => {
+                          setProgress(e.target.value);
+                        }}
+                        className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
+                      />
+                    </div>
+                  </div>
+                  
                 </div>
                 <Button
                   type="submit"
                   className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-md transition-colors"
                 >
-                  Sign In
+                  Create
                 </Button>
               </form>
             </DrawerDescription>

@@ -1,12 +1,18 @@
 package handlers
 
-import "net/http"
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+)
 
 type Project struct {
-	Title     string  `json:"title"`
-	Desc      string  `json:"desc"`
-	Progress  string  `json:"progress"`
-	GithubURL string  `json:"githubURL"`
+	Title     string `json:"title"`
+	Desc      string `json:"desc"`
+	Progress  string `json:"progress"`
+	GithubURL string `json:"githubURL"`
+	Owner string `json:"owner"`
 }
 
 func AddProject(w http.ResponseWriter, r *http.Request) {
@@ -34,6 +40,24 @@ func AddProject(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Database not connected", http.StatusInternalServerError)
 		return
 	}
+
+	var project Project
+
+	if err := json.NewDecoder(r.Body).Decode(&project); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	fmt.Println(project)
+
+	_, err := DB.Exec("INSERT INTO projects (title,description,progress,githubURL,owner) VALUES (?,?,?,?,?)", project.Title, project.Desc, project.Progress, project.GithubURL,project.Owner)
+	if err != nil{
+		log.Printf("Error while inserting the project %v",err)
+		http.Error(w,"Failed to create the projects in the database",http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"message":"success"})
 
 }
 
