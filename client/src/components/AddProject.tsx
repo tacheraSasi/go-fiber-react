@@ -16,6 +16,7 @@ import { PlusCircleIcon, UserRound } from "lucide-react";
 import { useAuth } from "@/context/AuthProvider";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { toast } from "@/hooks/use-toast";
 
 export default function AddProject() {
   const [progress, setProgress] = useState("50");
@@ -25,10 +26,15 @@ export default function AddProject() {
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
 
-  const handleSubmit=(e:React.FormEvent)=>{
-    e.preventDefault()
-    console.log(e.target)
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(e.target);
+    toast({
+      variant: "default",
+      title: "Project created Successful!",
+      description:  "You have successfully created a PROJECT.",
+    })
+  };
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -44,7 +50,12 @@ export default function AddProject() {
               Add a Project
             </DrawerTitle>
             <DrawerDescription className="text-sm text-neutral-400">
-              <form method="post" onSubmit={(e)=>{handleSubmit(e)}}>
+              <form
+                method="post"
+                onSubmit={(e) => {
+                  handleSubmit(e);
+                }}
+              >
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label

@@ -9,7 +9,7 @@ const Background = ({children}:BackgroundProps) => {
   return (
     <div className="relative flex h-screen w-full items-center justify-center px-4 overflow-hidden bg-neutral-950">
       {/* Toast notifications */}
-      <Toaster />
+      <Toaster /> 
 
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden">
