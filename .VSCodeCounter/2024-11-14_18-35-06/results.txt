@@ -1,0 +1,115 @@
+Date : 2024-11-14 18:35:06
+Directory : /home/tach/tach/go/go-react-todo
+Total : 58 files,  10377 codes, 143 comments, 411 blanks, all 10931 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          4 |      7,627 |          0 |          3 |      7,630 |
+| TypeScript JSX     |         27 |      1,711 |         47 |        198 |      1,956 |
+| go                 |         10 |        551 |         90 |        145 |        786 |
+| TypeScript         |          4 |        181 |          5 |         38 |        224 |
+| CSS                |          2 |         85 |          0 |          6 |         91 |
+| Go Checksum File   |          1 |         71 |          0 |          1 |         72 |
+| JavaScript         |          2 |         65 |          1 |          1 |         67 |
+| JSON with Comments |          1 |         25 |          0 |          1 |         26 |
+| XML                |          2 |         22 |          0 |          2 |         24 |
+| HTML               |          1 |         13 |          0 |          1 |         14 |
+| Markdown           |          2 |          9 |          0 |          5 |         14 |
+| Log                |          1 |          9 |          0 |          7 |         16 |
+| Go Module File     |          1 |          8 |          0 |          3 |         11 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                      | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                         |         58 |     10,377 |        143 |        411 |     10,931 |
+| . (Files)                                                                 |          3 |         18 |          0 |         12 |         30 |
+| client                                                                    |         43 |      9,729 |         53 |        250 |     10,032 |
+| client (Files)                                                            |          9 |      7,741 |          1 |          8 |      7,750 |
+| client/src                                                                |         34 |      1,988 |         52 |        242 |      2,282 |
+| client/src (Files)                                                        |          7 |        166 |          3 |         15 |        184 |
+| client/src/components                                                     |         16 |        954 |         21 |        113 |      1,088 |
+| client/src/components (Files)                                             |          9 |        543 |         21 |         59 |        623 |
+| client/src/components/ui                                                  |          7 |        411 |          0 |         54 |        465 |
+| client/src/context                                                        |          1 |         52 |          0 |         12 |         64 |
+| client/src/hooks                                                          |          1 |        160 |          3 |         32 |        195 |
+| client/src/lib                                                            |          1 |         10 |          1 |          3 |         14 |
+| client/src/pages                                                          |          8 |        646 |         24 |         67 |        737 |
+| client/src/pages (Files)                                                  |          3 |        266 |          7 |         25 |        298 |
+| client/src/pages/Auth                                                     |          5 |        380 |         17 |         42 |        439 |
+| server                                                                    |         12 |        630 |         90 |        149 |        869 |
+| server (Files)                                                            |          3 |        109 |          5 |         18 |        132 |
+| server/db                                                                 |          1 |         47 |          4 |          9 |         60 |
+| server/ekilirelay                                                         |          1 |         71 |         22 |         12 |        105 |
+| server/handlers                                                           |          3 |        293 |         48 |         75 |        416 |
+| server/middlewares                                                        |          2 |         50 |          5 |         14 |         69 |
+| server/utils                                                              |          2 |         60 |          6 |         21 |         87 |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                  | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/tach/tach/go/go-react-todo/NOTES.md                                 | Markdown           |          8 |          0 |          3 |         11 |
+| /home/tach/tach/go/go-react-todo/README.md                                | Markdown           |          1 |          0 |          2 |          3 |
+| /home/tach/tach/go/go-react-todo/app.log                                  | Log                |          9 |          0 |          7 |         16 |
+| /home/tach/tach/go/go-react-todo/client/components.json                   | JSON               |         20 |          0 |          0 |         20 |
+| /home/tach/tach/go/go-react-todo/client/index.html                        | HTML               |         13 |          0 |          1 |         14 |
+| /home/tach/tach/go/go-react-todo/client/package-lock.json                 | JSON               |      7,542 |          0 |          1 |      7,543 |
+| /home/tach/tach/go/go-react-todo/client/package.json                      | JSON               |         51 |          0 |          1 |         52 |
+| /home/tach/tach/go/go-react-todo/client/postcss.config.js                 | JavaScript         |          6 |          0 |          1 |          7 |
+| /home/tach/tach/go/go-react-todo/client/src/App.css                       | CSS                |          6 |          0 |          1 |          7 |
+| /home/tach/tach/go/go-react-todo/client/src/App.tsx                       | TypeScript JSX     |         50 |          2 |          5 |         57 |
+| /home/tach/tach/go/go-react-todo/client/src/components/AddProject.tsx     | TypeScript JSX     |        188 |          2 |          8 |        198 |
+| /home/tach/tach/go/go-react-todo/client/src/components/AddTodo.tsx        | TypeScript JSX     |         55 |          0 |          9 |         64 |
+| /home/tach/tach/go/go-react-todo/client/src/components/AppProvider.tsx    | TypeScript JSX     |         59 |         10 |         14 |         83 |
+| /home/tach/tach/go/go-react-todo/client/src/components/Background.tsx     | TypeScript JSX     |        107 |          6 |          7 |        120 |
+| /home/tach/tach/go/go-react-todo/client/src/components/Layout.tsx         | TypeScript JSX     |         14 |          1 |          3 |         18 |
+| /home/tach/tach/go/go-react-todo/client/src/components/MobileNav.tsx      | TypeScript JSX     |         26 |          0 |          4 |         30 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ProtectedRoute.tsx | TypeScript JSX     |         13 |          0 |          6 |         19 |
+| /home/tach/tach/go/go-react-todo/client/src/components/Sidebar.tsx        | TypeScript JSX     |         16 |          0 |          2 |         18 |
+| /home/tach/tach/go/go-react-todo/client/src/components/UserDrawer.tsx     | TypeScript JSX     |         65 |          2 |          6 |         73 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/button.tsx      | TypeScript JSX     |         52 |          0 |          6 |         58 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/card.tsx        | TypeScript JSX     |         68 |          0 |          9 |         77 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/drawer.tsx      | TypeScript JSX     |        104 |          0 |         13 |        117 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/input.tsx       | TypeScript JSX     |         21 |          0 |          5 |         26 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/label.tsx       | TypeScript JSX     |         20 |          0 |          5 |         25 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/toast.tsx       | TypeScript JSX     |        115 |          0 |         13 |        128 |
+| /home/tach/tach/go/go-react-todo/client/src/components/ui/toaster.tsx     | TypeScript JSX     |         31 |          0 |          3 |         34 |
+| /home/tach/tach/go/go-react-todo/client/src/context/AuthProvider.tsx      | TypeScript JSX     |         52 |          0 |         12 |         64 |
+| /home/tach/tach/go/go-react-todo/client/src/favicon.svg                   | XML                |         15 |          0 |          1 |         16 |
+| /home/tach/tach/go/go-react-todo/client/src/hooks/use-toast.ts            | TypeScript         |        160 |          3 |         32 |        195 |
+| /home/tach/tach/go/go-react-todo/client/src/index.css                     | CSS                |         79 |          0 |          5 |         84 |
+| /home/tach/tach/go/go-react-todo/client/src/lib/utils.ts                  | TypeScript         |         10 |          1 |          3 |         14 |
+| /home/tach/tach/go/go-react-todo/client/src/logo.svg                      | XML                |          7 |          0 |          1 |          8 |
+| /home/tach/tach/go/go-react-todo/client/src/main.tsx                      | TypeScript JSX     |          9 |          0 |          1 |         10 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/About.tsx               | TypeScript JSX     |          7 |          0 |          2 |          9 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Auth/AuthLayout.tsx     | TypeScript JSX     |         13 |          2 |          4 |         19 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Auth/HelpCenter.tsx     | TypeScript JSX     |         37 |          5 |          7 |         49 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Auth/Login.tsx          | TypeScript JSX     |        127 |          1 |         11 |        139 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Auth/Register.tsx       | TypeScript JSX     |        159 |          9 |         14 |        182 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Auth/Welcome.tsx        | TypeScript JSX     |         44 |          0 |          6 |         50 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Dashboard.tsx           | TypeScript JSX     |        200 |          7 |         13 |        220 |
+| /home/tach/tach/go/go-react-todo/client/src/pages/Home.tsx                | TypeScript JSX     |         59 |          0 |         10 |         69 |
+| /home/tach/tach/go/go-react-todo/client/src/vite-env.d.ts                 | TypeScript         |          0 |          1 |          1 |          2 |
+| /home/tach/tach/go/go-react-todo/client/tailwind.config.js                | JavaScript         |         59 |          1 |          0 |         60 |
+| /home/tach/tach/go/go-react-todo/client/tsconfig.json                     | JSON with Comments |         25 |          0 |          1 |         26 |
+| /home/tach/tach/go/go-react-todo/client/tsconfig.node.json                | JSON               |         14 |          0 |          1 |         15 |
+| /home/tach/tach/go/go-react-todo/client/vite.config.ts                    | TypeScript         |         11 |          0 |          2 |         13 |
+| /home/tach/tach/go/go-react-todo/server/db/init.go                        | go                 |         47 |          4 |          9 |         60 |
+| /home/tach/tach/go/go-react-todo/server/ekilirelay/ekilirelay.go          | go                 |         71 |         22 |         12 |        105 |
+| /home/tach/tach/go/go-react-todo/server/go.mod                            | Go Module File     |          8 |          0 |          3 |         11 |
+| /home/tach/tach/go/go-react-todo/server/go.sum                            | Go Checksum File   |         71 |          0 |          1 |         72 |
+| /home/tach/tach/go/go-react-todo/server/handlers/auth.go                  | go                 |        165 |         25 |         33 |        223 |
+| /home/tach/tach/go/go-react-todo/server/handlers/default.go               | go                 |         62 |         11 |         19 |         92 |
+| /home/tach/tach/go/go-react-todo/server/handlers/projects.go              | go                 |         66 |         12 |         23 |        101 |
+| /home/tach/tach/go/go-react-todo/server/main.go                           | go                 |         30 |          5 |         14 |         49 |
+| /home/tach/tach/go/go-react-todo/server/middlewares/dumpingRequest.go     | go                 |         26 |          5 |          7 |         38 |
+| /home/tach/tach/go/go-react-todo/server/middlewares/middleware.go         | go                 |         24 |          0 |          7 |         31 |
+| /home/tach/tach/go/go-react-todo/server/utils/errors.go                   | go                 |         29 |          4 |         14 |         47 |
+| /home/tach/tach/go/go-react-todo/server/utils/jwt.go                      | go                 |         31 |          2 |          7 |         40 |
+| Total                                                                     |                    |     10,377 |        143 |        411 |     10,931 |
++---------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

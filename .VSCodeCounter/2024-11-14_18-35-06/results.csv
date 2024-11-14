@@ -1,0 +1,60 @@
+"filename", "language", "go", "Go Module File", "Go Checksum File", "HTML", "Markdown", "JSON", "JavaScript", "JSON with Comments", "TypeScript", "TypeScript JSX", "Log", "CSS", "XML", "comment", "blank", "total"
+"/home/tach/tach/go/go-react-todo/NOTES.md", "Markdown", 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 11
+"/home/tach/tach/go/go-react-todo/README.md", "Markdown", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3
+"/home/tach/tach/go/go-react-todo/app.log", "Log", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 7, 16
+"/home/tach/tach/go/go-react-todo/client/components.json", "JSON", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20
+"/home/tach/tach/go/go-react-todo/client/index.html", "HTML", 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14
+"/home/tach/tach/go/go-react-todo/client/package-lock.json", "JSON", 0, 0, 0, 0, 0, 7542, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7543
+"/home/tach/tach/go/go-react-todo/client/package.json", "JSON", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 1, 52
+"/home/tach/tach/go/go-react-todo/client/postcss.config.js", "JavaScript", 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"/home/tach/tach/go/go-react-todo/client/src/App.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 1, 7
+"/home/tach/tach/go/go-react-todo/client/src/App.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 2, 5, 57
+"/home/tach/tach/go/go-react-todo/client/src/components/AddProject.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 0, 0, 0, 2, 8, 198
+"/home/tach/tach/go/go-react-todo/client/src/components/AddTodo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 9, 64
+"/home/tach/tach/go/go-react-todo/client/src/components/AppProvider.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 10, 14, 83
+"/home/tach/tach/go/go-react-todo/client/src/components/Background.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 107, 0, 0, 0, 6, 7, 120
+"/home/tach/tach/go/go-react-todo/client/src/components/Layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 1, 3, 18
+"/home/tach/tach/go/go-react-todo/client/src/components/MobileNav.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 4, 30
+"/home/tach/tach/go/go-react-todo/client/src/components/ProtectedRoute.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 6, 19
+"/home/tach/tach/go/go-react-todo/client/src/components/Sidebar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 2, 18
+"/home/tach/tach/go/go-react-todo/client/src/components/UserDrawer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 2, 6, 73
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 6, 58
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 9, 77
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/drawer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 104, 0, 0, 0, 0, 13, 117
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 5, 26
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 5, 25
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/toast.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 115, 0, 0, 0, 0, 13, 128
+"/home/tach/tach/go/go-react-todo/client/src/components/ui/toaster.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 3, 34
+"/home/tach/tach/go/go-react-todo/client/src/context/AuthProvider.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 12, 64
+"/home/tach/tach/go/go-react-todo/client/src/favicon.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 1, 16
+"/home/tach/tach/go/go-react-todo/client/src/hooks/use-toast.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 3, 32, 195
+"/home/tach/tach/go/go-react-todo/client/src/index.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 79, 0, 0, 5, 84
+"/home/tach/tach/go/go-react-todo/client/src/lib/utils.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 1, 3, 14
+"/home/tach/tach/go/go-react-todo/client/src/logo.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 1, 8
+"/home/tach/tach/go/go-react-todo/client/src/main.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 1, 10
+"/home/tach/tach/go/go-react-todo/client/src/pages/About.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 2, 9
+"/home/tach/tach/go/go-react-todo/client/src/pages/Auth/AuthLayout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 2, 4, 19
+"/home/tach/tach/go/go-react-todo/client/src/pages/Auth/HelpCenter.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 0, 0, 0, 5, 7, 49
+"/home/tach/tach/go/go-react-todo/client/src/pages/Auth/Login.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 0, 0, 0, 1, 11, 139
+"/home/tach/tach/go/go-react-todo/client/src/pages/Auth/Register.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 159, 0, 0, 0, 9, 14, 182
+"/home/tach/tach/go/go-react-todo/client/src/pages/Auth/Welcome.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 0, 0, 0, 0, 6, 50
+"/home/tach/tach/go/go-react-todo/client/src/pages/Dashboard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 7, 13, 220
+"/home/tach/tach/go/go-react-todo/client/src/pages/Home.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 10, 69
+"/home/tach/tach/go/go-react-todo/client/src/vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"/home/tach/tach/go/go-react-todo/client/tailwind.config.js", "JavaScript", 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 0, 0, 1, 0, 60
+"/home/tach/tach/go/go-react-todo/client/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 1, 26
+"/home/tach/tach/go/go-react-todo/client/tsconfig.node.json", "JSON", 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 1, 15
+"/home/tach/tach/go/go-react-todo/client/vite.config.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 2, 13
+"/home/tach/tach/go/go-react-todo/server/db/init.go", "go", 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 9, 60
+"/home/tach/tach/go/go-react-todo/server/ekilirelay/ekilirelay.go", "go", 71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 12, 105
+"/home/tach/tach/go/go-react-todo/server/go.mod", "Go Module File", 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 11
+"/home/tach/tach/go/go-react-todo/server/go.sum", "Go Checksum File", 0, 0, 71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 72
+"/home/tach/tach/go/go-react-todo/server/handlers/auth.go", "go", 165, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 33, 223
+"/home/tach/tach/go/go-react-todo/server/handlers/default.go", "go", 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 19, 92
+"/home/tach/tach/go/go-react-todo/server/handlers/projects.go", "go", 66, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 23, 101
+"/home/tach/tach/go/go-react-todo/server/main.go", "go", 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 14, 49
+"/home/tach/tach/go/go-react-todo/server/middlewares/dumpingRequest.go", "go", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 7, 38
+"/home/tach/tach/go/go-react-todo/server/middlewares/middleware.go", "go", 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 31
+"/home/tach/tach/go/go-react-todo/server/utils/errors.go", "go", 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 14, 47
+"/home/tach/tach/go/go-react-todo/server/utils/jwt.go", "go", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7, 40
+"Total", "-", 551, 8, 71, 13, 9, 7627, 65, 25, 181, 1711, 9, 85, 22, 143, 411, 10931
