@@ -16,8 +16,12 @@ import { UserRound } from "lucide-react";
 import { useAuth } from "@/context/AuthProvider";
 
 export default function UserDrawer() {
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser,logout } = useAuth();
   const user = authenticatedUser;
+
+  const handleLogout=()=>{
+    logout()
+  }
 
   return (
     <Drawer>
@@ -30,21 +34,32 @@ export default function UserDrawer() {
         <div className="mx-auto w-full max-w-sm">
           {/* Drawer Header */}
           <DrawerHeader className="border-b border-neutral-800 pb-4 mb-4">
-            <DrawerTitle className="text-xl font-semibold">Profile Info</DrawerTitle>
+            <DrawerTitle className="text-xl font-semibold">
+              Profile Info
+            </DrawerTitle>
             <DrawerDescription className="text-sm text-neutral-400">
               <p className="mt-2">Username: {user?.name || "N/A"}</p>
               <p>Email: {user?.email || "N/A"}</p>
             </DrawerDescription>
           </DrawerHeader>
 
-
           {/* Footer with Close Button */}
           <DrawerFooter className="mt-auto border-t border-neutral-800 pt-4">
             <DrawerClose asChild>
-              <Button variant="default" className="w-full bg-neutral-700 hover:bg-neutral-600">
+              <Button
+                variant="default"
+                className="w-full bg-neutral-700 hover:bg-neutral-600"
+              >
                 Close
               </Button>
             </DrawerClose>
+            <Button
+              variant="destructive"
+              className="w-full "
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
           </DrawerFooter>
         </div>
       </DrawerContent>

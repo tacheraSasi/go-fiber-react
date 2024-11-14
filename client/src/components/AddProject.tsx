@@ -19,6 +19,9 @@ import { Label } from "./ui/label";
 
 export default function AddProject() {
   const [progress, setProgress] = useState("50")
+  const [title, setTitle] = useState("")
+  const [desc, setDesc] = useState("")
+  const [githubURL, setGithubURL] = useState("")
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
 
@@ -50,7 +53,9 @@ export default function AddProject() {
                       <Input
                         id="email"
                         type="text"
-                        className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
+                        value={title}
+                        onChange={(e)=>{setTitle(e.target.value)}}
+                        className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
                   </div>
@@ -65,7 +70,9 @@ export default function AddProject() {
                       <Input
                         id="email"
                         type="text"
-                        className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
+                        value={desc}
+                        onChange={(e)=>{setDesc(e.target.value)}}
+                        className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
                   </div>
@@ -82,7 +89,7 @@ export default function AddProject() {
                         type="range"
                         value={progress}
                         onChange={(e)=>{setProgress(e.target.value)}}
-                        className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
+                        className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
                   </div>
@@ -97,7 +104,9 @@ export default function AddProject() {
                       <Input
                         id="email"
                         type="text"
-                        className="bg-neutral-800 border-neutral-700 text-neutral-100 pl-10 placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
+                        value={githubURL}
+                        onChange={(e)=>{setGithubURL(e.target.value)}}
+                        className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
                   </div>
