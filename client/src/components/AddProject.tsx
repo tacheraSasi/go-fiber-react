@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
 import { Bar, BarChart, ResponsiveContainer } from "recharts";
 import { Button } from "@/components/ui/button";
@@ -18,13 +18,17 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
 export default function AddProject() {
-  const [progress, setProgress] = useState("50")
-  const [title, setTitle] = useState("")
-  const [desc, setDesc] = useState("")
-  const [githubURL, setGithubURL] = useState("")
+  const [progress, setProgress] = useState("50");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [githubURL, setGithubURL] = useState("");
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
 
+  const handleSubmit=(e:React.FormEvent)=>{
+    e.preventDefault()
+    console.log(e.target)
+  }
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -40,7 +44,7 @@ export default function AddProject() {
               Add a Project
             </DrawerTitle>
             <DrawerDescription className="text-sm text-neutral-400">
-              <form action="">
+              <form method="post" onSubmit={(e)=>{handleSubmit(e)}}>
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label
@@ -53,8 +57,12 @@ export default function AddProject() {
                       <Input
                         id="email"
                         type="text"
+                        required
+                        placeholder="Write the project title here "
                         value={title}
-                        onChange={(e)=>{setTitle(e.target.value)}}
+                        onChange={(e) => {
+                          setTitle(e.target.value);
+                        }}
                         className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
@@ -70,8 +78,11 @@ export default function AddProject() {
                       <Input
                         id="email"
                         type="text"
+                        placeholder="Write the project description here"
                         value={desc}
-                        onChange={(e)=>{setDesc(e.target.value)}}
+                        onChange={(e) => {
+                          setDesc(e.target.value);
+                        }}
                         className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
@@ -88,7 +99,9 @@ export default function AddProject() {
                         id="Progress"
                         type="range"
                         value={progress}
-                        onChange={(e)=>{setProgress(e.target.value)}}
+                        onChange={(e) => {
+                          setProgress(e.target.value);
+                        }}
                         className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
@@ -104,25 +117,28 @@ export default function AddProject() {
                       <Input
                         id="email"
                         type="text"
+                        placeholder="Write the github URL of the project"
                         value={githubURL}
-                        onChange={(e)=>{setGithubURL(e.target.value)}}
+                        onChange={(e) => {
+                          setGithubURL(e.target.value);
+                        }}
                         className="bg-neutral-800 border-neutral-700 text-neutral-100  placeholder-neutral-500 focus:ring-green-500 focus:border-green-500"
                       />
                     </div>
                   </div>
                 </div>
+                <Button
+                  type="submit"
+                  className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-md transition-colors"
+                >
+                  Sign In
+                </Button>
               </form>
             </DrawerDescription>
           </DrawerHeader>
 
           {/* Footer with Close Button */}
           <DrawerFooter className="mt-auto border-t border-neutral-800 pt-4">
-            <Button
-              type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-md transition-colors"
-            >
-              Sign In
-            </Button>
             <DrawerClose asChild>
               <Button
                 variant="default"
