@@ -13,7 +13,7 @@ var DB *sql.DB
 
 // Init initializes the SQLite database connection and creates the users table
 func Init() (*sql.DB, error) {
-	db, err := sql.Open("sqlite3", "/home/tach/tach/go/go-react-todo/server/db.sqlite")
+	db, err := sql.Open("sqlite3", "/home/tach/tach/go/ekilihive/server/db.sqlite")
 	if err != nil {
 		log.Fatal("Failed to initialize the SQLite connection:", err)
 		utils.LogError(

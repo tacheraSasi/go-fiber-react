@@ -1,2 +1,2 @@
-# Build Todo Application with Go & React
+# Build Projects Tracker Application with Go & React
 

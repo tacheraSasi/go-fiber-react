@@ -13,10 +13,12 @@ import (
 )
 
 type Project struct {
+	ID 		  int    `json:"id"`
 	Title     string `json:"title"`
 	Desc      string `json:"desc"`
 	Progress  string `json:"progress"`
 	GithubURL string `json:"githubURL"`
+	CreatedAt string `json:"createsAt"`
 	Owner     string `json:"owner"`
 }
 
@@ -88,10 +90,24 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(r.Body)
 
-	// projects,err := DB.Exec("SELECT * FROM projects WHERE owner = ? ",)
+	rows,err := DB.Query("SELECT * FROM projects")
+	if err != nil{
+		http.Error(w,err.Error(),http.StatusInternalServerError)
+		return
+	}
+
+	defer rows.Close()
+	
+	var projects []Project
+
+	for rows.Next(){
+		var project Project
+		err := rows.Scan(&project.)
+		
+	}
+
 
 	w.WriteHeader(http.StatusOK)
-	
 
 }
 
