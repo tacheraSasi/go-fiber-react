@@ -13,7 +13,7 @@ import (
 )
 
 type Project struct {
-	ID 		  int    `json:"id"`
+	ID        int    `json:"id"`
 	Title     string `json:"title"`
 	Desc      string `json:"desc"`
 	Progress  string `json:"progress"`
@@ -90,24 +90,39 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(r.Body)
 
-	rows,err := DB.Query("SELECT * FROM projects")
-	if err != nil{
-		http.Error(w,err.Error(),http.StatusInternalServerError)
+	rows, err := DB.Query("SELECT * FROM projects")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	defer rows.Close()
-	
+
 	var projects []Project
 
-	for rows.Next(){
+	for rows.Next() {
 		var project Project
-		err := rows.Scan(&project.)
-		
+		err := rows.Scan(
+			&project.ID,
+			&project.Title,
+			&project.Desc,
+			&project.GithubURL,
+			&project.CreatedAt,
+		)
+
+		if err != nil{
+			http.Error(w,err.Error(),http.StatusInternalServerError)
+			return
+		}
+
+		projects = append(projects, project)
+
+
 	}
 
 
 	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(projects)
 
 }
 
