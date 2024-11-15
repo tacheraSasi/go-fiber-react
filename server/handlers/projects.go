@@ -22,6 +22,10 @@ type Project struct {
 	Owner     string `json:"owner"`
 }
 
+type Owner struct{
+	Owner string `json:"owner"`
+}
+
 func AddProject(w http.ResponseWriter, r *http.Request) {
 	// Handle CORS preflight request
 	if r.Method == http.MethodOptions {
@@ -79,7 +83,7 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Ensure this is a POST request
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
@@ -88,9 +92,19 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
 	w.Header().Set("Content-Type", "application/json")
 
-	fmt.Println(r.Body)
+	// fmt.Println(r.Body)
 
+	var owner Owner
+
+	if err := json.NewDecoder(r.Body).Decode(&owner); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	fmt.Println(owner)
+
+	// rows, err := DB.Query("SELECT * FROM projects WHERE owner = ?",owner)
 	rows, err := DB.Query("SELECT * FROM projects")
+	fmt.Println(rows)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -106,8 +120,10 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 			&project.ID,
 			&project.Title,
 			&project.Desc,
+			&project.Progress,
 			&project.GithubURL,
 			&project.CreatedAt,
+			&project.Owner,
 		)
 
 		if err != nil{
@@ -119,7 +135,7 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 
 	}
-
+	fmt.Println(projects)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(projects)

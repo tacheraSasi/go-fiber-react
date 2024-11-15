@@ -40,8 +40,19 @@ const data = [
   { month: "Dec", revenue: 4200 },
 ];
 
+interface Project {
+  id: number;
+  title: string;
+  desc: string;
+  progress: string;
+  githubURL: string;
+  createdAt: string;
+  owner: string;
+}
+
 const Dashboard = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  const [projects, setProjects] = useState([])
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
 
@@ -63,9 +74,8 @@ const Dashboard = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      if(res.data.message == "success"){
-        
-      }
+      setProjects(res.data)
+      console.log(res.data)
     } catch (error) {}
   };
 
@@ -169,43 +179,17 @@ const Dashboard = () => {
               Recent Projects
             </h3>
             <ul className="space-y-4">
-              {[
-                {
-                  name: "Project Alpha",
-                  owner: "Olivia Martin",
-                  date: "Oct 28, 2024",
-                },
-                {
-                  name: "Project Beta",
-                  owner: "Jackson Lee",
-                  date: "Oct 27, 2024",
-                },
-                {
-                  name: "Project Gamma",
-                  owner: "Isabella Nguyen",
-                  date: "Oct 26, 2024",
-                },
-                {
-                  name: "Project Delta",
-                  owner: "William Kim",
-                  date: "Oct 25, 2024",
-                },
-                {
-                  name: "Project Epsilon",
-                  owner: "Sofia Davis",
-                  date: "Oct 24, 2024",
-                },
-              ].map((project, index) => (
+              {projects.map((project:Project, index) => (
                 <li key={index} className="flex justify-between items-center">
                   <div>
                     <p className="text-neutral-300 font-medium">
-                      {project.name}
+                      {project.title}
                     </p>
                     <p className="text-neutral-500 text-sm">
                       Owner: {project.owner}
                     </p>
                   </div>
-                  <p className="text-green-400 font-semibold">{project.date}</p>
+                  <p className="text-green-400 font-semibold">{project.createdAt}</p>
                 </li>
               ))}
             </ul>
