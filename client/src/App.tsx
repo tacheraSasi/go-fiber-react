@@ -1,5 +1,5 @@
-import React from 'react';
-import { createBrowserRouter, Link, RouterProvider, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { createBrowserRouter, Link, RouterProvider, Outlet, useNavigate } from 'react-router-dom';
 import Login from './pages/Auth/Login';
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
@@ -11,6 +11,16 @@ import Welcome from './pages/Auth/Welcome';
 import { AppProvider } from './components/AppProvider';
 import { AuthProvider } from './context/AuthProvider';
 import HelpCenter from './pages/Auth/HelpCenter';
+
+const Index = ()=>{
+  const navigate = useNavigate()
+  useEffect(()=>{
+    navigate("dashboard")
+  },[])
+  return (
+    <div className="">index</div>
+  )
+}
 
 const App = () => {
   const router = createBrowserRouter([
@@ -33,6 +43,7 @@ const App = () => {
         },
       ],
     },
+    { path: '', element: <Index /> },
     { path: 'about', element: <About /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },

@@ -69,7 +69,6 @@ func AddProject(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
-
 }
 
 func GetAllProjects(w http.ResponseWriter, r *http.Request) {
