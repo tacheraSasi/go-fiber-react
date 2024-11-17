@@ -102,7 +102,7 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(owner)
 
 	// rows, err := DB.Query("SELECT * FROM projects WHERE owner = ?",owner)
-	rows, err := DB.Query("SELECT * FROM projects")
+	rows, err := DB.Query("SELECT * FROM projects LIMIT 5")
 	fmt.Println(rows)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -138,7 +138,6 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(projects)
-
 }
 
 func EditProject() {}
