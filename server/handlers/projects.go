@@ -156,7 +156,7 @@ func EditProject(w http.ResponseWriter, r *http.Request) {
 	// Handle CORS preflight request
 	if r.Method == http.MethodOptions {
 		w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
-		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Methods", "PUT, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.WriteHeader(http.StatusOK)
 		return
@@ -167,7 +167,7 @@ func EditProject(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Access-Control-Allow-Origins",FrontendUrl)
+	w.Header().Set("Access-Control-Allow-Origin",FrontendUrl)
 	w.Header().Set("Content-Type","application/json")
 
 	if DB == nil {
