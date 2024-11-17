@@ -1,5 +1,6 @@
 import AddProject from "@/components/AddProject";
 import MobileNav from "@/components/MobileNav";
+import RecentProjects from "@/components/RecentProjects";
 import Sidebar from "@/components/Sidebar";
 import UserDrawer from "@/components/UserDrawer";
 import { useAuth } from "@/context/AuthProvider";
@@ -12,6 +13,7 @@ import {
   FiActivity,
   FiMenu,
   FiX,
+  FiBookOpen,
 } from "react-icons/fi";
 import {
   LineChart,
@@ -40,44 +42,16 @@ const data = [
   { month: "Dec", revenue: 4200 },
 ];
 
-interface Project {
-  id: number;
-  title: string;
-  desc: string;
-  progress: string;
-  githubURL: string;
-  createdAt: string;
-  owner: string;
-}
 
 const Dashboard = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-  const [projects, setProjects] = useState([])
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
 
   const toggleMobileNav = () => {
     setMobileNavOpen(!isMobileNavOpen);
   };
-  useEffect(()=>{
-    getAllTasks()
-  },[])
 
-  const getAllTasks = async () => {
-    try {
-      const res = await api.post(
-        "/projects",
-        {
-          owner: user?.email,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      setProjects(res.data)
-      console.log(res.data)
-    } catch (error) {}
-  };
 
   return (
     <div className="flex min-h-screen bg-neutral-900 text-white">
@@ -119,10 +93,10 @@ const Dashboard = () => {
               icon: <FiActivity size={24} />,
             },
             {
-              title: "New Submissions",
-              value: "95",
+              title: "Total repos",
+              value: "78",
               change: "+15 this week",
-              icon: <FiShoppingCart size={24} />,
+              icon: <FiBookOpen size={24} />,
             },
             {
               title: "Feedbacks",
@@ -131,7 +105,7 @@ const Dashboard = () => {
               icon: <FiDollarSign size={24} />,
             },
           ].map((card) => (
-            <div
+            <div 
               key={card.title}
               className="p-6 bg-neutral-800 rounded-lg shadow-md flex items-center space-x-4 border border-neutral-700"
             >
@@ -174,26 +148,7 @@ const Dashboard = () => {
           </div>
 
           {/* Recent Projects */}
-          <div className="p-6 bg-neutral-800 rounded-lg shadow-md border border-neutral-700">
-            <h3 className="text-lg font-semibold mb-4 text-neutral-100">
-              Recent Projects
-            </h3>
-            <ul className="space-y-4">
-              {projects.map((project:Project, index) => (
-                <li key={index} className="flex justify-between items-center">
-                  <div>
-                    <p className="text-neutral-300 font-medium">
-                      {project.title}
-                    </p>
-                    <p className="text-neutral-500 text-sm">
-                      Owner: {project.owner}
-                    </p>
-                  </div>
-                  <p className="text-green-400 font-semibold">{project.createdAt}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <RecentProjects />
         </div>
       </div>
     </div>
