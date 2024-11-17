@@ -15,7 +15,6 @@ export interface Project {
     owner: string;
 }
 
-  
 const RecentProjects = () => {
     const [projects, setProjects] = useState([])
     const { authenticatedUser } = useAuth();

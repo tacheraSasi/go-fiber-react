@@ -28,19 +28,14 @@ export default function Project({project}:ProjectProps) {
   const [githubURL, setGithubURL] = useState(project.githubURL);
   const { authenticatedUser } = useAuth();
   const user = authenticatedUser;
-  const clearInputs=()=>{
-    setTitle("")
-    setProgress("50")
-    setDesc("")
-    setGithubURL("")
-  }
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(e.target);
     try {
       const response = await api.post(
-        '/project/create',
+        `/project/edit?id=${project.id}`,
         {
           progress,
           title,
@@ -55,7 +50,7 @@ export default function Project({project}:ProjectProps) {
       )
       console.log(response)
       if (response.data.message == "success"){
-        clearInputs()
+        
         toast({
           variant: "default",
           title: "Project edited Successful!",
