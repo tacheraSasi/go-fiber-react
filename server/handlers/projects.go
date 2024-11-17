@@ -7,7 +7,6 @@ CURRENTLY THE API IS ACCESSIBLE TO EVERYONE .....
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -145,9 +144,9 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 func EditProject(w http.ResponseWriter, r *http.Request) {
 	var project Project
-	id := r.URL.Query().Get("id")
-	fmt.Println(id)
-	if id == "" {
+	ProjectID := r.URL.Query().Get("id")
+	fmt.Println(ProjectID)
+	if ProjectID == "" {
 		http.Error(w,"Missing id query param",http.StatusBadRequest);
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(map[string]string{"message": "Missing id query param"})
@@ -185,8 +184,25 @@ func EditProject(w http.ResponseWriter, r *http.Request) {
 			"projects.go",
 		)
 		return
-
 	}
+
+	_,err := DB.Exec("UPDATE projects SET title=?,description=?,progress=?,githubURL=? WHERE id=?",
+		project.Title,
+		project.Desc,
+		project.Progress,
+		project.GithubURL,
+		ProjectID,
+	)
+
+	if err != nil {
+		log.Printf("Error while Updating the project with id:%s %v", ProjectID,err)
+		http.Error(w, "Failed to create the projects in the database", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
+
 }
 
 func DeleteProject() {}
