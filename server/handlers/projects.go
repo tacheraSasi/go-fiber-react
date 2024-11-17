@@ -7,9 +7,12 @@ CURRENTLY THE API IS ACCESSIBLE TO EVERYONE .....
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/tacherasasi/go-react/utils"
 )
 
 type Project struct {
@@ -99,7 +102,7 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	fmt.Println(owner)
+	// fmt.Println(owner)
 
 	// rows, err := DB.Query("SELECT * FROM projects WHERE owner = ?",owner)
 	rows, err := DB.Query("SELECT * FROM projects LIMIT 5")
@@ -134,12 +137,56 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 
 
 	}
-	fmt.Println(projects)
+	// fmt.Println(projects)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(projects)
 }
 
-func EditProject() {}
+func EditProject(w http.ResponseWriter, r *http.Request) {
+	var project Project
+	id := r.URL.Query().Get("id")
+	fmt.Println(id)
+	if id == "" {
+		http.Error(w,"Missing id query param",http.StatusBadRequest);
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Missing id query param"})
+		return
+		
+	}
+	// Handle CORS preflight request
+	if r.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin", FrontendUrl)
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	if r.Method != http.MethodPut{
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
+
+	w.Header().Set("Access-Control-Allow-Origins",FrontendUrl)
+	w.Header().Set("Content-Type","application/json")
+
+	if DB == nil {
+		http.Error(w, "Database not connected", http.StatusInternalServerError)
+		return
+	}
+
+
+	if err := json.NewDecoder(r.Body).Decode(&project);err != nil{
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		utils.LogError(
+			"Failed to  decode the json",
+			err.Error(),
+			"projects.go",
+		)
+		return
+
+	}
+}
 
 func DeleteProject() {}

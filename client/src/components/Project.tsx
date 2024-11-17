@@ -34,7 +34,7 @@ export default function Project({project}:ProjectProps) {
     e.preventDefault();
     console.log(e.target);
     try {
-      const response = await api.post(
+      const response = await api.put(
         `/project/edit?id=${project.id}`,
         {
           progress,
