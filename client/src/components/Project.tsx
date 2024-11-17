@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -12,7 +10,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { PlusCircleIcon, UserRound } from "lucide-react";
 import { useAuth } from "@/context/AuthProvider";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
