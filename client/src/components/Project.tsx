@@ -61,8 +61,8 @@ export default function Project({project}:ProjectProps) {
         clearInputs()
         toast({
           variant: "default",
-          title: "Project created Successful!",
-          description:  "You have successfully created a PROJECT.",
+          title: "Project edited Successful!",
+          description:  "You have successfully edited a PROJECT.",
         })
       }
     } catch (error) {
@@ -186,7 +186,7 @@ export default function Project({project}:ProjectProps) {
                   type="submit"
                   className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-md transition-colors"
                 >
-                  Create
+                  Save
                 </Button>
               </form>
             </DrawerDescription>
